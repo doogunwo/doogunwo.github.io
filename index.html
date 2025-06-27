@@ -1,162 +1,251 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Gunwoo Do, 도 건우</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    body {
-      font-family: sans-serif;
-      background: #f4f4f4;
-      padding: 40px;
-      margin: 0;
-    }
-    .container {
-      max-width: 900px;
-      margin: auto;
-      background: white;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.1);
-    }
-    h1, h2 {
-      color: #222;
-    }
-    a {
-      color: #007acc;
-      text-decoration: none;
-    }
-    .profile-img {
-      width: 160px;
-      border-radius: 10px;
-      margin-bottom: 20px;
-    }
-    .section {
-      margin-bottom: 30px;
-    }
-  </style>
-</head>
-<body>
+<style>
+  body {
+    font-family: sans-serif;
+    background: #f4f4f4;
+    margin: 0;
+    padding: 40px;
+  }
 
-  <div class="container">
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: auto;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    overflow: hidden;
+  }
 
-    <!-- 프로필 -->
+  .left-column, .right-column {
+    padding: 30px;
+    box-sizing: border-box;
+  }
+
+  .left-column {
+    flex: 1;
+    min-width: 280px;
+    background: #fafafa;
+    border-right: 1px solid #eee;
+  }
+
+  .right-column {
+    flex: 2;
+    min-width: 500px;
+    background: #ffffff;
+  }
+
+  .section {
+    margin-bottom: 30px;
+  }
+
+  .profile-img {
+    width: 160px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+
+  h1, h2 {
+    color: #222;
+  }
+
+  a {
+    color: #007acc;
+    text-decoration: none;
+  }
+
+  ul {
+    padding-left: 20px;
+  }
+
+  /* Publications 스타일 */
+  .pub-list {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .pub-list li {
+    margin-bottom: 20px;
+    padding-left: 15px;
+    border-left: 3px solid #007acc;
+  }
+
+  .pub-title {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .pub-authors {
+    color: #444;
+  }
+
+  .pub-venue {
+    font-style: italic;
+    color: #666;
+  }
+
+  /* 프로젝트 카드 */
+  .project-card {
+    background: #f0f9ff;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    border-left: 5px solid #007acc;
+  }
+
+  .project-card h3 {
+    margin-top: 0;
+    color: #007acc;
+  }
+
+  .project-card p {
+    margin: 5px 0;
+    color: #333;
+  }
+</style>
+
+<div class="container">
+  <!-- 좌측 컬럼 -->
+  <div class="left-column">
+
     <div class="section" style="text-align: center;">
       <img src="profile.jpg" alt="증명사진" class="profile-img">
       <h1>Gunwoo Do (도 건우)</h1>
-      <p><strong>Research Interests:</strong>
-        <b>Storage System</b>,
-        <b>Distributed Storage/Computing</b>,
-        <b>Blockchain</b>,
-        <b>System Software</b>
+      <p><strong>Research Interests:</strong><br>
+        Storage System, Distributed Storage/Computing, Blockchain, System Software
       </p>
     </div>
 
-    <!-- 연락처 -->
     <div class="section">
-      <h2>📫 Contact</h2>
+      <h2> Contact</h2>
       <p><strong>Email:</strong> <a href="mailto:doogunwo@pusan.ac.kr">doogunwo@pusan.ac.kr</a></p>
       <p><strong>Blog:</strong> <a href="https://velog.io/@doogunwo/posts" target="_blank">velog.io/@doogunwo</a></p>
       <p><strong>GitHub:</strong> <a href="https://github.com/doogunwo" target="_blank">github.com/doogunwo</a></p>
     </div>
 
-    <!-- 학력 -->
     <div class="section">
       <h2>🎓 Education</h2>
       <ul>
-        <li><b>Bachelor</b>: DONG-EUI University, Dept. of Computer Engineering, 2020–2024</li>
-        <li><b>Master</b>: Pusan National University, Computer Engineering, 2024–2026</li>
-        <li><b>PhD</b>: Planned to advance to Gwangju Institute of Science and Technology INFONET LAB</li>
+        <li><b>Bachelor</b>: DONG-EUI Univ., Computer Engineering, 2020–2024</li>
+        <li><b>Master</b>: Pusan Nat’l Univ., 2024–2026</li>
+        <li><b>PhD</b>: Planned – GIST INFONET LAB</li>
       </ul>
     </div>
 
     <div class="section">
-      <h2> Foreign language</h2>
+      <h2> Foreign Language</h2>
       <ul>
-        <li><b>TOEIC Speaking : IM1</li>
-        <li><b>TOEIC          : 800↑ (planning)</li>
+        <li><b>TOEIC Speaking</b>: IM1</li>
+        <li><b>TOEIC</b>: 800↑ (planning)</li>
       </ul>
     </div>
 
     <div class="section">
-      <h2> Foreign language</h2>
-      <ul>
-        <li><b>TOEIC Speaking : IM1</li>
-        <li><b>TOEIC          : 800↑ (planning)</li>
-      </ul>
-    </div>
-
-
-
-    <style>
-      .pub-list {
-        list-style: none;
-        padding-left: 0;
-      }
-      .pub-list li {
-        margin-bottom: 20px;
-        padding-left: 15px;
-        border-left: 3px solid #007acc;
-      }
-      .pub-title {
-        font-weight: bold;
-        display: block;
-        margin-bottom: 4px;
-      }
-      .pub-authors {
-        color: #444;
-      }
-      .pub-venue {
-        font-style: italic;
-        color: #666;
-      }
-    </style>
-
-    <div class="section">
-      <h2> Publications</h2>
+      <h2>📚 Publications</h2>
       <ul class="pub-list">
         <li>
           <span class="pub-title">[Accept] Object Double Detection Method using YOLOv5</span>
           <span class="pub-authors">Gun-wo Do · Minyoung Kim · Si-woong Jang</span><br>
-          <span class="pub-venue">한국정보통신학회 2022년 추계 종합학술대회 논문집</span>
+          <span class="pub-venue">KICS 2022 Fall Conference</span>
         </li>
         <li>
-          <span class="pub-title">[Accept] Implementation of YOLOv5-based Forest Fire Smoke Monitoring Model with Increased Recognition of Unstructured Objects by Increasing Self-learning data</span>
-          <span class="pub-authors">Gun-wo Do, Minyoung Kim, Si-woong Jang</span><br>
-          <span class="pub-venue">IJACT 22-12-63</span>
+          <span class="pub-title">[Accept] YOLOv5 Forest Fire Monitoring Model with Self-learning</span>
+          <span class="pub-authors">Gun-wo Do · Minyoung Kim · Si-woong Jang</span><br>
+          <span class="pub-venue">IJACT, Vol.10 No.4, 2022</span>
         </li>
         <li>
-          <span class="pub-title">[Accept] Performance Comparison between Yolov5 and Yolov8 Models trained on Fire Image</span>
-          <span class="pub-authors">Gun-woo Do, Dong-Hyeon Kim, Si-woong Jang</span><br>
-          <span class="pub-venue">한국정보통신학회 2023년도 춘계종합학술대회 논문집 제27권 제1호</span>
+          <span class="pub-title">[Accept] YOLOv5 vs YOLOv8 on Fire Image</span>
+          <span class="pub-authors">Gun-woo Do · Dong-Hyeon Kim · Si-woong Jang</span><br>
+          <span class="pub-venue">KICS 2023 Spring Conference</span>
         </li>
         <li>
-          <span class="pub-title">[Reject] Lightweight Near-Data Processing Framework Based on NVMe-over-Fabrics for BPE Tokenization</span>
-          <span class="pub-authors">Gunwoo Do, Euihyeon Kim, Sungjun Yun, Sungyong Ahn</span><br>
+          <span class="pub-title">[Reject] Lightweight NDP for BPE Tokenization</span>
+          <span class="pub-authors">Gunwoo Do · Euihyeon Kim · Sungjun Yun · Sungyong Ahn</span><br>
           <span class="pub-venue">NVMSA 2025</span>
         </li>
-
         <li>
-          <span class="pub-title">[Submit] Poster: A Near-data tokenization platform for reducing data movement overhead in disaggregated storage systems </span>
-          <span class="pub-authors">Gunwoo Do, Euihyeon Kim, Sungjun Yun, Sungyong Ahn</span><br>
-          <span class="pub-venue">NVMSA 2025 Poster/Demo</span>
+          <span class="pub-title">[Submit] Poster: A Near-data Tokenization Platform</span>
+          <span class="pub-authors">Gunwoo Do · Euihyeon Kim · Sungjun Yun · Sungyong Ahn</span><br>
+          <span class="pub-venue">NVMSA 2025 Poster</span>
         </li>
-        
         <li>
-          <span class="pub-title">[Writing] SPDK-based Near-Data Processing platform for Disaggregated Storage Systems </span>
-          <span class="pub-authors">Gunwoo Do, Euihyeon Kim, Sungjun Yun, Sungyong Ahn</span><br>
-          <span class="pub-venue">*Not yet decided</span>
+          <span class="pub-title">[Writing] SPDK-based NDP Platform for Disaggregated Storage</span>
+          <span class="pub-authors">Gunwoo Do · Euihyeon Kim · Sungjun Yun · Sungyong Ahn</span><br>
+          <span class="pub-venue">*To be submitted</span>
         </li>
-
       </ul>
     </div>
 
- 
-
-
-    
-    
+    <div class="section">
+      <h2> Scholarship</h2>
+      <ul>
+         <br><b>희망사다리 장학금 2022.05.17</b>
+         <br><b>2024 다문화탈북학생 교육 멘토링 장학금 2024.05.10 ~ 2024.10.10</b>
+      </ul>
+    </div>
   </div>
 
-</body>
-</html>
+  <div class="section">
+      <h2> Patent application</h2>
+      <ul>
+        <b>Title:</b> 비정형객체 객체 감지 정확도 개선을 위한 학습 데이터 자가 증식 장치 및 방법 
+        <br><b>Application No.:</b> 10-2022-0173615 
+        <br><b>Date:</b> 2022년12월13일  
+        <br><b>Applicants:</b> 장시웅, 도건우, 김민영
+        <br><b>Status:</b> 출원 완료 (공개 특허)
+      </ul>
+    </div>
+  </div>
+
+
+  <div class="section">
+  <h2> Certificate</h2>
+  <ul>
+    <li>
+      <b>[KSA]</b> 부산 지역산업 맞춤형 Dapp 개발 과정 수료  
+      <br><small>160시간 | 2023.08.07 ~ 2023.09.04 | 주관: 한국표준협회</small>
+    </li>
+    <li>
+      <b>[GICT]</b> 파이썬 기반 인공지능(SLP) 기본 교육 수료  
+      <br><small>160시간 | 2022.01.17 ~ 2022.02.18 | 주관: 동의대학교 인공지능그랜드ICT연구센터</small>
+    </li>
+  </ul>
+  </div>
+
+  <!-- 우측 컬럼 -->
+  <div class="right-column">
+
+        
+
+    <div class="section">
+
+
+        .project-card a {
+        display: inline-block;
+        background-color: #007acc;
+        color: white;
+        padding: 6px 12px;
+        border-radius: 6px;
+        text-decoration: none;
+        margin-top: 8px;
+      }
+
+      .project-card a:hover {
+        background-color: #005f99;
+      }
+      <h2>💻 Projects</h2>
+
+
+      <div class="project-card">
+      <h3>SPDK 기반 NDP 프레임워크</h3>
+      <p>NVMe-over-Fabrics 환경에서 Near-Data Processing을 위한 SPDK 파이프라인 설계 및 구현</p>
+      <p><strong>기술:</strong> SPDK, DPDK, NVMe-oF, Shared Memory, Custom Tokenizer</p>
+      <p><a href="https://github.com/doogunwo/spdk-ndp" target="_blank">🔗 GitHub Repository</a></p>
+    </div>
+
+
+      
+    </div>
+  </div>
+</div>
