@@ -244,13 +244,98 @@
   <h1>Experience</h1>
     <h3>Project</h3>
       <div class="project-card">
+        <h3>Edge Storage</h3>
+        <p>HDFS와 같은 분산 파일 시스템에서 파일 동기화를 블록체인으로 수행하도록 구현해보는 토이 프로젝트입니다.</p>
+        <p><strong>미니 블록체인을 구현하여 해당 블록체인 시스템으로 메타데이터를 동기화하도록 하는 구현 시스템입니다. RESTAPI와 블록체인, 그리고 하둡 시스템에 대해서 공부합니다.</strong> </p>
+        <p><a href="https://github.com/doogunwo/Edge_storage" target="_blank">🔗 GitHub Repository</a></p>
+      </div>
+
+      <div class="project-card">
         <h3>SPDK 기반 NDP 프레임워크</h3>
         <p>NVMe-over-Fabrics 환경에서 Near-Data Processing을 위한 SPDK 파이프라인 설계 및 구현</p>
         <p><strong>Tokenization을 스토리지 디스어그리게이션(disaggregated storage) 환경의 스토리지 서버로 오프로딩하여 근접 데이터 처리를 제시했습니다. 제안된 시스템은 네트워크 트래픽과 전체 I/O 시간을 각각 최대 52%와 18% 감소시키는 효과를 확보할 수 있었습니다.</strong> </p>
         <p><a href="https://github.com/doogunwo/sbnf" target="_blank">🔗 GitHub Repository</a></p>
       </div>
-    <h3>Internship</h3>
-    <h3>Research assignment</h3>
+
+      <div class="project-card">
+        <h3>DiskAnomaly</h3>
+        <p>디스크 I/O 및 리소스 사용량 데이터를 기반으로 이상(anomaly)을 탐지하는 시스템입니다.</p>
+        <p><strong>iostat, vmstat 등의 유틸리티를 사용하여 디스크 I/O, CPU 사용량, 메모리 사용량 등의 시스템 메트릭을 실시간 수집하여, 정규화(normalization) 및 타임슬라이스 처리하여 모델 학습에 적합한 형태로 가공하면서 인풋을 기반으로 이상 탐지를 하도록 구현했습니다.</strong> </p>
+        <p><a href="https://github.com/doogunwo/DiskAnomaly " target="_blank">🔗 GitHub Repository</a></p>
+      </div>
+      
+      <div class="project-card">
+        <h3>SnapCache</h3>
+        <p>FiFO 기반 웹캐시 축출(Evict) 알고리즘 연구 및 개발입니다.</p>
+        <p><strong>Snap이라는 단위를 기반으로 FIFO 기반 캐시에서 데이터를 축출하는 알고리즘입니다. 적응형을 도입하여 Snap으로 FIFO를 순회할 때, 적응형으로 캐시를 축출하도록 구현했습니다.</strong> </p>
+        <p><a href="https://github.com/doogunwo/snapcache" target="_blank">🔗 GitHub Repository</a></p>
+      </div>
+      
+      <div class="project-card">
+        <h3>Stosys</h3>
+        <p>암스테르담 대학교의 과제 수행입니다. </p>
+        <p><strong>암스테르담 대학교 컴퓨터과학과 Storage Systems (StoSys) Course Project Handbook 과제 수행 리포지토리, 저는 이 과제를 통해 QEMU 세팅, libnvme, zns, FTL 설계에 대해서 배웠습니다.</strong> </p>
+        <p><a href="https://github.com/doogunwo/storage-system" target="_blank">🔗 GitHub Repository</a></p>
+      </div>
+
+
+      <div class="project-card">
+        <h3>Clivechat</h3>
+        <p>시스템 프로그래밍 수업 중 과제로 구현한 채팅 프로그램입니다.</p>
+        <p><strong>C++의 기본기를 쌓을 수 있었고, epoll, mutex, socket 등등 리눅스의 기본기를 배웠습니다.</strong> </p>
+        <p><a href="https://github.com/doogunwo/clivechat" target="_blank">🔗 GitHub Repository</a></p>
+      </div>
+
+      <div class="project-card">
+        <h3>Simnayo</h3>
+        <p> 부산 지역산업 맞춤형 Dapp 개발 과정 프로젝트 </p>
+        <p><strong>하이퍼렛저를 기반으로 월렛을 통해 체인을 열고, 해당 체인 기반인 Dapp을 개발하는 했습니다. 이 때, 주제는 원예 데이터를 공유하고 공유하는 플랫폼을 제안해보았습니다.</strong> </p>
+        <p><a href="https://github.com/doogunwo/Simnayo" target="_blank">🔗 GitHub Repository</a></p>
+      </div>
+
+      <div class="project-card">
+        <h3>Insta Crawler</h3>
+        <p>ICT 인턴 중 회사의 요구로 개발해본 인스타그램 게시물 크롤러입니다.</p>
+        <p><strong>파이썬을 기반으로 구현한 크롤러입니다. 회사에서 실사용하는 공헌을 했고, 개선 버전을 단국대학교 부동산대학원 도수현 학생에게 공유하여 부동산 데이터 수집 활용에 도움이 되었습니다.</strong> </p>
+        <p><a href="https://github.com/doogunwo/Insta_crawler" target="_blank">🔗 GitHub Repository</a></p>
+      </div>
+      
+      <div class="project-card">
+        <h3>Tagober</h3>
+        <p> 저의 졸업작품입니다.</p>
+        <p><strong>얼굴 인식 기반 버스 결제 시스템을 주제로 구현한 프로젝트입니다. 아키텍처로 얼굴 인식 모델 관리 서버와 데이터 관리 서버를 분리해보았고, RESTAPI에 대한 이해를 가질 수 있었습니다. 엣지 컴퓨팅에 대한 개념을 이해할 수 있었고, 각 엣지의 모델을 관리하는 방법에 대해 크게 고민할 수 있었습니다. 또한 얼굴 데이터 증강을 고려하기도 했으나, GPU 부족으로 구현에는 실패했습니다. opencv를 기반으로 얼굴 인식을 할 수 있도록 구현하였습니다.</strong> </p>
+        <p><a href="https://github.com/doogunwo/tagober" target="_blank">🔗 GitHub Repository</a></p>
+      </div>
+
+      <div class="project-card">
+        <h3>고투베드(GoToBed)</h3>
+        <p> 모바일 컴퓨팅 수업 중 기말 프로젝트입니다.</p>
+        <p><strong>저는 프로젝트 중 파이어베이스의 수면 데이터를 기반으로 시각화 화면 구현을 담당했습니다.</strong> </p>
+        <p><a href="" target="_blank">🔗 GitHub Repository</a></p>
+      </div>
+
+      <div class="project-card">
+        <h3>고삐풀린 망아지</h3>
+        <p> 동의대학교 GDSC(구글 학생 개발자 커뮤니티) 해커톤 2023 제출작입니다.</p>
+        <p><strong>디스코드 챗봇을 기반으로 학우들에게 커피를 미리 예약할 수 있도록 요청을 보낼 수 있도록 인터페이스를 제공하는 프로젝트입니다. 동의대학교 교내에는 카페가 별로 없어서 교내에서 커피를 사려면 줄을 오래 서야 하는 문제점이 있었습니다. Go언어의 심플함을 느낄 수 있었습니다.</strong> </p>
+        <p><a href="https://github.com/orgs/unbridled-foal/repositories" target="_blank">🔗 GitHub Repository</a></p>
+      </div>
+
+      
+      <div class="project-card">
+        <h3>shop-for-flowers</h3>
+        <p> 데이터베이스 수업 중 구현한 꽃 관리 프로그램입니다.</p>
+        <p><strong>저는 팀장 역할 및 테스트데이터 구성과 DB 서버 구성과 같은 인프라와 개발 및 전반적인 구현을 담당했습니다.</strong> </p>
+        <p><a href="https://github.com/doogunwo/shop-for-flowers" target="_blank">🔗 GitHub Repository</a></p>
+      </div>
+
+      <div class="project-card">
+        <h3>library-management-program2</h3>
+        <p> 자바 프로그래밍 수업에서 진행한 프로젝트입니다.</p>
+        <p><strong>깃허브 연동, GUI 구성, 데이터베이스 연동과 같은 기본적인 애플리케이션 구성과 개발을 진행해본 첫 프로젝트입니다. </strong> </p>
+        <p><a href="https://github.com/doogunwo/library-management-program2" target="_blank">🔗 GitHub Repository</a></p>
+      </div>
+      
     <h3>Gallery</h3>
 
 </div>
