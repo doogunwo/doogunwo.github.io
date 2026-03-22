@@ -1,5 +1,4 @@
 title: doogunwo
-description: Personal notes, essays, and projects.
 lang: ko-KR
 timezone: Asia/Seoul
 permalink: /:categories/:year/:month/:day/:title/
@@ -11,3 +10,4 @@ defaults:
       type: posts
     values:
       layout: post
+

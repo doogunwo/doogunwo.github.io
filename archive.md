@@ -5,8 +5,8 @@ permalink: /archive/
 ---
 
 <section class="page-header">
-  <p class="eyebrow">Hierarchy</p>
-  <h1>Archive</h1>
+  <p class="eyebrow" lang="en">Hierarchy</p>
+  <h1 lang="en">Archive</h1>
   <p>연도별로 쌓인 글을 따라가며 흐름을 볼 수 있는 구조입니다.</p>
 </section>
 

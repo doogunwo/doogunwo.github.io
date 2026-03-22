@@ -5,14 +5,16 @@ permalink: /
 ---
 
 <section class="hero">
-  <p class="eyebrow">Medium-inspired / sans-serif</p>
-  <h1>생각을 쌓아두는 가장 단순한 형태의 블로그.</h1>
-  <p>계층형 구조를 유지하면서, 읽기 편한 한 컬럼 중심 레이아웃으로 글과 노트를 축적합니다.</p>
+  <div class="hero-avatar" aria-hidden="true">
+    <img src="{{ '/image.png' | relative_url }}" alt="">
+  </div>
+  <h1 class="hero-name" lang="en">doogunwo</h1>
+  <p class="hero-role" lang="en">system programmer</p>
 </section>
 
 <section class="feed">
   <div class="section-heading">
-    <h2>Latest</h2>
+    <h2 lang="en">Latest</h2>
     <a href="{{ '/archive/' | relative_url }}">전체 아카이브</a>
   </div>
 

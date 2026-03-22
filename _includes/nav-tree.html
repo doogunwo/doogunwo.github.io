@@ -14,7 +14,7 @@
     {% endif %}
     <li>
       <a class="{% if item_active %}is-active{% endif %}" href="{{ item.url | relative_url }}">
-        {{ item.title }}
+        <span lang="en">{{ item.title }}</span>
       </a>
       {% if item.children %}
         <ul class="nav-tree nav-tree--child">
@@ -22,7 +22,7 @@
             {% assign child_url = child.url | split: '#' | first %}
             <li>
               <a class="{% if child_url == current_url %}is-active{% endif %}" href="{{ child.url | relative_url }}">
-                {{ child.title }}
+                <span lang="en">{{ child.title }}</span>
               </a>
             </li>
           {% endfor %}

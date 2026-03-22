@@ -10,12 +10,10 @@
   <body>
     <div class="site-shell">
       <aside class="site-sidebar">
-        <a class="brand" href="{{ '/' | relative_url }}">{{ site.title }}</a>
-        <p class="site-tagline">{{ site.description }}</p>
+        <a class="brand" href="{{ '/' | relative_url }}" lang="en">{{ site.title }}</a>
         <nav class="site-nav" aria-label="Primary">
           {% include nav-tree.html items=site.data.navigation %}
         </nav>
-        <p class="site-note">Sans serif, Medium-inspired, hierarchy-first.</p>
       </aside>
 
       <main class="site-main">
