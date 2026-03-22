@@ -1,0 +1,11 @@
+- title: Home
+  url: /
+- title: Writing
+  url: /archive/#writing
+  children:
+    - title: Archive
+      url: /archive/#writing
+    - title: Notes
+      url: /archive/#notes
+- title: About
+  url: /about/

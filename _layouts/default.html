@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="{{ page.lang | default: site.lang | default: 'ko' }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% if page.title %}{{ page.title }} · {% endif %}{{ site.title }}</title>
+    <meta name="description" content="{{ page.description | default: site.description | escape }}">
+    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+  </head>
+  <body>
+    <div class="site-shell">
+      <aside class="site-sidebar">
+        <a class="brand" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+        <p class="site-tagline">{{ site.description }}</p>
+        <nav class="site-nav" aria-label="Primary">
+          {% include nav-tree.html items=site.data.navigation %}
+        </nav>
+        <p class="site-note">Sans serif, Medium-inspired, hierarchy-first.</p>
+      </aside>
+
+      <main class="site-main">
+        {{ content }}
+      </main>
+    </div>
+  </body>
+</html>

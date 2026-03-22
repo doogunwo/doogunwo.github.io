@@ -1,0 +1,24 @@
+{% assign items = include.items %}
+{% assign current_url = page.url | split: '#' | first %}
+<ul class="nav-tree">
+  {% for item in items %}
+    {% assign item_url = item.url | split: '#' | first %}
+    <li>
+      <a class="{% if current_url == item_url %}is-active{% endif %}" href="{{ item.url | relative_url }}">
+        {{ item.title }}
+      </a>
+      {% if item.children %}
+        <ul class="nav-tree nav-tree--child">
+          {% for child in item.children %}
+            {% assign child_url = child.url | split: '#' | first %}
+            <li>
+              <a class="{% unless child.url contains '#' %}{% if current_url == child_url %}is-active{% endif %}{% endunless %}" href="{{ child.url | relative_url }}">
+                {{ child.title }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </li>
+  {% endfor %}
+</ul>
