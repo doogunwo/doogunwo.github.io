@@ -16,7 +16,7 @@ permalink: /
     <a href="{{ '/archive/' | relative_url }}">전체 아카이브</a>
   </div>
 
-  {% for post in site.posts %}
+  {% for post in site.posts limit: 6 %}
     <article class="post-card">
       <div class="post-card__meta">
         <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y.%m.%d" }}</time>

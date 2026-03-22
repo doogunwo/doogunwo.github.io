@@ -5,6 +5,8 @@
   children:
     - title: Archive
       url: /archive/#writing
+    - title: Series
+      url: /series/
     - title: Notes
       url: /archive/#notes
 - title: About

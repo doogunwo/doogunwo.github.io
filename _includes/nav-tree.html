@@ -3,8 +3,17 @@
 <ul class="nav-tree">
   {% for item in items %}
     {% assign item_url = item.url | split: '#' | first %}
+    {% assign item_active = current_url == item_url %}
+    {% if item.children %}
+      {% for child in item.children %}
+        {% assign child_url = child.url | split: '#' | first %}
+        {% if current_url == child_url %}
+          {% assign item_active = true %}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
     <li>
-      <a class="{% if current_url == item_url %}is-active{% endif %}" href="{{ item.url | relative_url }}">
+      <a class="{% if item_active %}is-active{% endif %}" href="{{ item.url | relative_url }}">
         {{ item.title }}
       </a>
       {% if item.children %}
@@ -12,7 +21,7 @@
           {% for child in item.children %}
             {% assign child_url = child.url | split: '#' | first %}
             <li>
-              <a class="{% unless child.url contains '#' %}{% if current_url == child_url %}is-active{% endif %}{% endunless %}" href="{{ child.url | relative_url }}">
+              <a class="{% if child_url == current_url %}is-active{% endif %}" href="{{ child.url | relative_url }}">
                 {{ child.title }}
               </a>
             </li>

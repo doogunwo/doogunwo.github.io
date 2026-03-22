@@ -167,6 +167,10 @@ a:hover {
   gap: 18px;
 }
 
+.page-header--compact {
+  padding-bottom: 30px;
+}
+
 .hero h1,
 .page-header h1,
 .post-header h1 {
@@ -219,8 +223,17 @@ a:hover {
   gap: 18px;
 }
 
+.about-grid,
+.series-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
 .post-card,
-.archive-group {
+.archive-group,
+.about-card,
+.series-card {
   padding: 22px 24px;
   border: 1px solid var(--border);
   border-radius: 22px;
@@ -257,6 +270,56 @@ a:hover {
 .archive-group {
   display: grid;
   gap: 14px;
+}
+
+.about-card,
+.series-card {
+  display: grid;
+  gap: 14px;
+}
+
+.about-card h2,
+.series-card h2 {
+  margin: 0;
+  font-size: 1.3rem;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+}
+
+.about-card p,
+.series-card p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.about-card--full {
+  grid-column: 1 / -1;
+}
+
+.series-card__header {
+  display: grid;
+  gap: 8px;
+}
+
+.series-list {
+  list-style: decimal;
+  padding-left: 1.15rem;
+  margin: 0;
+  display: grid;
+  gap: 12px;
+}
+
+.series-list li {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  color: var(--muted);
+}
+
+.series-list a {
+  font-weight: 600;
+  color: var(--text);
 }
 
 .archive-subgroup {
@@ -384,8 +447,15 @@ a:hover {
   .page-header,
   .post,
   .post-card,
-  .archive-group {
+  .archive-group,
+  .about-card,
+  .series-card {
     padding: 24px;
+  }
+
+  .about-grid,
+  .series-grid {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -407,6 +477,11 @@ a:hover {
   }
 
   .archive-list li {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .series-list li {
     flex-direction: column;
     align-items: flex-start;
   }
