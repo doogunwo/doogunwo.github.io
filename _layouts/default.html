@@ -5,20 +5,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% if page.title %}{{ page.title }} · {% endif %}{{ site.title }}</title>
     <meta name="description" content="{{ page.description | default: site.description | escape }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard.css">
     <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
   </head>
   <body>
     <div class="site-shell">
-      <aside class="site-sidebar">
-        <a class="brand" href="{{ '/' | relative_url }}" lang="en">{{ site.title }}</a>
-        <nav class="site-nav" aria-label="Primary">
-          {% include nav-tree.html items=site.data.navigation %}
-        </nav>
-      </aside>
+      <header class="site-top">
+        <div class="site-branding">
+          <div class="site-brand">
+            <a class="site-brand__link" href="{{ '/' | relative_url }}">doogunwo.io</a>
+          </div>
+          <section class="site-contact" aria-label="연락처">
+            <p class="site-contact__title">연락처</p>
+            <ul class="contact-list contact-list--sidebar">
+              <li class="contact-item contact-item--stacked">
+                <span class="contact-label">이메일</span>
+                <div class="contact-links">
+                  <a href="mailto:gunwoo.do@monitorapp.com" lang="en">gunwoo.do@monitorapp.com</a>
+                  <a href="mailto:dgw0601@gmail.com" lang="en">dgw0601@gmail.com</a>
+                </div>
+              </li>
+              <li>
+                <span class="contact-label">깃허브</span>
+                <a href="https://github.com/doogunwo" target="_blank" rel="noreferrer" lang="en">github.com/doogunwo</a>
+              </li>
+            </ul>
+          </section>
+        </div>
+        <div class="site-identity">
+          <a class="sidebar-avatar" href="{{ '/' | relative_url }}" aria-label="Home">
+            <img src="{{ '/image copy.png' | relative_url | replace: ' ', '%20' }}" alt="doogunwo profile photo">
+          </a>
+          <div class="site-identity__text">
+            <a class="brand" href="{{ '/' | relative_url }}" lang="en">{{ site.title }}</a>
+            <p class="sidebar-name">도건우</p>
+            <p class="sidebar-role">system programmer</p>
+          </div>
+        </div>
+      </header>
 
-      <main class="site-main">
-        {{ content }}
-      </main>
+      <div class="site-content">
+        {% if page.url == '/' %}
+          <div class="home-divider" aria-hidden="true"></div>
+        {% endif %}
+        <section class="sidebar-tags" aria-label="Tags">
+          <p class="sidebar-tags__title">태그 목록</p>
+          <ul class="tag-list">
+            <li class="tag-list__all">
+              <a data-tag-link="all" href="{{ '/' | relative_url }}">전체보기</a>
+              <span>({{ site.posts | size }})</span>
+            </li>
+            {% assign sidebar_tags = site.tags | sort %}
+            {% for tag in sidebar_tags %}
+              <li>
+                <a data-tag-link="{{ tag[0] | slugify }}" href="{{ '/' | relative_url }}?tag={{ tag[0] | slugify }}">{{ tag[0] }}</a>
+                <span>({{ tag[1].size }})</span>
+              </li>
+            {% endfor %}
+          </ul>
+        </section>
+
+        <main class="site-main">
+          {{ content }}
+        </main>
+      </div>
     </div>
+    <script src="{{ '/assets/js/main.js' | relative_url }}" defer></script>
   </body>
 </html>

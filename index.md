@@ -4,30 +4,24 @@ layout: default
 permalink: /
 ---
 
-<section class="hero">
-  <div class="hero-avatar" aria-hidden="true">
-    <img src="{{ '/image.png' | relative_url }}" alt="">
-  </div>
-  <h1 class="hero-name" lang="en">doogunwo</h1>
-  <p class="hero-role" lang="en">system programmer</p>
-</section>
-
 <section class="feed">
   <div class="section-heading">
-    <h2 lang="en">Latest</h2>
-    <a href="{{ '/archive/' | relative_url }}">전체 아카이브</a>
+    <h2>최신 글</h2>
   </div>
 
-  {% for post in site.posts limit: 6 %}
-    <article class="post-card">
+  {% for post in site.posts %}
+    <article class="post-card" data-tags="{% for tag in post.tags %}{{ tag | slugify }}{% unless forloop.last %},{% endunless %}{% endfor %}">
+      <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
       <div class="post-card__meta">
         <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y.%m.%d" }}</time>
-        {% if post.categories and post.categories.size > 0 %}
-          <span>{{ post.categories | join: " / " }}</span>
+        {% if post.tags and post.tags.size > 0 %}
+          <span class="post-card__tags">
+            {% for tag in post.tags %}
+              <a class="tag-pill" href="{{ '/' | relative_url }}?tag={{ tag | slugify }}">{{ tag }}</a>{% unless forloop.last %} {% endunless %}
+            {% endfor %}
+          </span>
         {% endif %}
       </div>
-      <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
-      <p>{{ post.excerpt | strip_html | strip_newlines | truncate: 140 }}</p>
     </article>
   {% endfor %}
 </section>

@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="ko-KR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>IceClave: A Trusted Execution Environment for In-Storage Computing 논문 리뷰 · doogunwo</title>
+    <meta name="description" content="">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard.css">
+    <link rel="stylesheet" href="/assets/css/main.css">
+  </head>
+  <body>
+    <div class="site-shell">
+      <header class="site-top">
+        <div class="site-branding">
+          <div class="site-brand">
+            <a class="site-brand__link" href="/">doogunwo.io</a>
+          </div>
+          <section class="site-contact" aria-label="연락처">
+            <p class="site-contact__title">연락처</p>
+            <ul class="contact-list contact-list--sidebar">
+              <li class="contact-item contact-item--stacked">
+                <span class="contact-label">이메일</span>
+                <div class="contact-links">
+                  <a href="mailto:gunwoo.do@monitorapp.com" lang="en">gunwoo.do@monitorapp.com</a>
+                  <a href="mailto:dgw0601@gmail.com" lang="en">dgw0601@gmail.com</a>
+                </div>
+              </li>
+              <li>
+                <span class="contact-label">깃허브</span>
+                <a href="https://github.com/doogunwo" target="_blank" rel="noreferrer" lang="en">github.com/doogunwo</a>
+              </li>
+            </ul>
+          </section>
+        </div>
+        <div class="site-identity">
+          <a class="sidebar-avatar" href="/" aria-label="Home">
+            <img src="/image%20copy.png" alt="doogunwo profile photo">
+          </a>
+          <div class="site-identity__text">
+            <a class="brand" href="/" lang="en">doogunwo</a>
+            <p class="sidebar-name">도건우</p>
+            <p class="sidebar-role">system programmer</p>
+          </div>
+        </div>
+      </header>
+
+      <div class="site-content">
+        
+        <section class="sidebar-tags" aria-label="Tags">
+          <p class="sidebar-tags__title">태그 목록</p>
+          <ul class="tag-list">
+            <li class="tag-list__all">
+              <a data-tag-link="all" href="/">전체보기</a>
+              <span>(10)</span>
+            </li>
+            
+            
+              <li>
+                <a data-tag-link="lsm-트리" href="/?tag=lsm-트리">LSM-트리</a>
+                <span>(1)</span>
+              </li>
+            
+              <li>
+                <a data-tag-link="disaggregation" href="/?tag=disaggregation">disaggregation</a>
+                <span>(1)</span>
+              </li>
+            
+              <li>
+                <a data-tag-link="docker" href="/?tag=docker">docker</a>
+                <span>(1)</span>
+              </li>
+            
+              <li>
+                <a data-tag-link="ftl" href="/?tag=ftl">ftl</a>
+                <span>(2)</span>
+              </li>
+            
+              <li>
+                <a data-tag-link="gpu" href="/?tag=gpu">gpu</a>
+                <span>(1)</span>
+              </li>
+            
+              <li>
+                <a data-tag-link="isp" href="/?tag=isp">isp</a>
+                <span>(1)</span>
+              </li>
+            
+              <li>
+                <a data-tag-link="llm" href="/?tag=llm">llm</a>
+                <span>(2)</span>
+              </li>
+            
+              <li>
+                <a data-tag-link="memory" href="/?tag=memory">memory</a>
+                <span>(1)</span>
+              </li>
+            
+              <li>
+                <a data-tag-link="nvme-of" href="/?tag=nvme-of">nvme-of</a>
+                <span>(1)</span>
+              </li>
+            
+              <li>
+                <a data-tag-link="offloading" href="/?tag=offloading">offloading</a>
+                <span>(1)</span>
+              </li>
+            
+              <li>
+                <a data-tag-link="os" href="/?tag=os">os</a>
+                <span>(1)</span>
+              </li>
+            
+              <li>
+                <a data-tag-link="pagedattention" href="/?tag=pagedattention">pagedattention</a>
+                <span>(1)</span>
+              </li>
+            
+              <li>
+                <a data-tag-link="paper" href="/?tag=paper">paper</a>
+                <span>(2)</span>
+              </li>
+            
+              <li>
+                <a data-tag-link="serving" href="/?tag=serving">serving</a>
+                <span>(1)</span>
+              </li>
+            
+              <li>
+                <a data-tag-link="storage" href="/?tag=storage">storage</a>
+                <span>(2)</span>
+              </li>
+            
+              <li>
+                <a data-tag-link="tcp" href="/?tag=tcp">tcp</a>
+                <span>(1)</span>
+              </li>
+            
+              <li>
+                <a data-tag-link="vllm" href="/?tag=vllm">vllm</a>
+                <span>(1)</span>
+              </li>
+            
+              <li>
+                <a data-tag-link="논문리뷰" href="/?tag=논문리뷰">논문리뷰</a>
+                <span>(1)</span>
+              </li>
+            
+              <li>
+                <a data-tag-link="데이터베이스" href="/?tag=데이터베이스">데이터베이스</a>
+                <span>(1)</span>
+              </li>
+            
+              <li>
+                <a data-tag-link="블록체인" href="/?tag=블록체인">블록체인</a>
+                <span>(3)</span>
+              </li>
+            
+              <li>
+                <a data-tag-link="스토리지" href="/?tag=스토리지">스토리지</a>
+                <span>(1)</span>
+              </li>
+            
+              <li>
+                <a data-tag-link="인-스토리지-시스템" href="/?tag=인-스토리지-시스템">인-스토리지 시스템</a>
+                <span>(1)</span>
+              </li>
+            
+              <li>
+                <a data-tag-link="작업증명" href="/?tag=작업증명">작업증명</a>
+                <span>(1)</span>
+              </li>
+            
+              <li>
+                <a data-tag-link="졸업작품" href="/?tag=졸업작품">졸업작품</a>
+                <span>(1)</span>
+              </li>
+            
+              <li>
+                <a data-tag-link="키-값-저장소" href="/?tag=키-값-저장소">키-값 저장소</a>
+                <span>(1)</span>
+              </li>
+            
+          </ul>
+        </section>
+
+        <main class="site-main">
+            <article class="post">
+    <header class="post-header">
+      <h1>IceClave: A Trusted Execution Environment for In-Storage Computing 논문 리뷰</h1>
+      <div class="post-meta">
+        <time datetime="2024-03-12T00:00:00+09:00">2024.03.12</time>
+        <span class="post-meta__sep">•</span>
+        <span class="post-meta__author"></span>
+        
+          <span class="post-meta__sep">•</span>
+          <span class="post-meta__tags">
+            
+              <a class="tag-pill" href="/?tag=ftl">ftl</a>
+            
+              <a class="tag-pill" href="/?tag=인-스토리지-시스템">인-스토리지 시스템</a>
+            
+          </span>
+        
+      </div>
+  </header>
+
+  <div class="post-content prose">
+    <p>정리 원본 링크</p>
+
+<blockquote>
+  <p>https://www.notion.so/IceClave-A-Trusted-Execution-Environment-for-In-Storage-Computing-a93d724b2f70435a9908a8326ef3bfcb?pvs=4</p>
+</blockquote>
+
+<h1 id="1-abstract">[1] ABSTRACT</h1>
+
+<p>내부 저장소 컴퓨팅은 SSD를 활용하여 프로그램을 호스트에서 SSD로 이동시키는 것을 가능케 한다.
+I/O 병목 현상을 해소하는 효과적인 방법이지만 내부 저장소 보안 문제가 존재한다.</p>
+
+<p>현대 SSD 컨트롤러는 신뢰할 수 있는 실행 환경이 없어서 악의적인 프로그램이 데이터를 훔치거나 변경할 수 있다.</p>
+
+<p>이를 방지하기 위해 IceClave라는 경량의 신뢰 실행 환경을 구축했다.</p>
+
+<blockquote>
+  <p>IceClave는 플래시 관리 기능과 내부 저장소 프로그램 사이의 보안 격리를 가능케 하며, 플래시 컨트롤러 내에 데이터 보호 메커니즘을 개발합니다. IceClave는 성능을 떨어뜨리지 않으면서 SSD 컨트롤러 내의 보안을 강화하고, 내부 저장소 컴퓨팅의 성능 이점을 유지한다.</p>
+</blockquote>
+
+<h1 id="2-introduction">[2] INTRODUCTION</h1>
+
+<p>내부 저장소 프로세서는 호스트 머신과 독립적으로 작동하기 때문에, 현대 SSD 컨트롤러는 SSD 내부에서 실행되는 프로그램에 대한 신뢰할 수 있는 실행 환경(TEE)을 제공하지 않기 때문에 사용자 데이터와 플래시 칩에 심각한 보안 위협을 제공한다.</p>
+
+<p>악성 오프로드 프로그램은 버퍼 오버플로우와 같은 메모리 취약점을 이용하여 특권 상승을 가능케 하여 SSD DRAM의 FTL의 캐시된 매핑 테이블에 액세스하고 수정할 수 있다</p>
+
+<h1 id="3-background">[3] BACKGROUND</h1>
+
+<p>보안 격리를 달성하기 위해(그림 1의 2), 우리는 오프로드된 프로그램을 호스팅하기 위해 내부 저장소 TEE를 구축하고, 내부 저장소 프로그램의 데이터 통신 및 처리에 대해 데이터 암호화 및 메모리 무결성 검사를 강제</p>
+
+<p><img src="https://velog.velcdn.com/images/doogunwo/post/e577dd28-59c5-4d57-a8e5-78300eb28ab3/image.png" alt="" />
+최소의 하드웨어 비용으로 SSD 컨트롤러에 경량의 스트림 암호 엔진을 통합하는 것이 목표</p>
+
+<ul>
+  <li>TrustZone 확장을 사용하여 내부 저장소 프로그램에서 핵심 FTL 기능을 보호</li>
+  <li>SSD DRAM을 위한 경량 메모리 암호화 및 무결성 검증을 활성화함으로써 내부 저장소 프로그램 간의 보안 격리</li>
+  <li>IceClave에 필요한 하드웨어 및 소프트웨어 확장이 최소한이며, 현대 SSD 컨트롤러에서 개발</li>
+  <li>IceClave의 양적 오버헤드 연구를 위해 SSD FPGA 보드를 사용한 시스템 프로토 타입을 개발하고, 감도 분석을 위해 전체 시스템 시뮬레이터</li>
+</ul>
+
+<h1 id="4in-storage-computing">[4]In-Storage Computing</h1>
+
+<blockquote>
+  <p>악의적 사용자는 소프트웨어 및 물리적 공격을 통해 내부 저장소 프로그램에 의해 생성된 중간 데이터와 출력을 조작하여 잘못된 계산 결과를 유발할 수 있습니다.</p>
+</blockquote>
+
+<blockquote>
+  <p>악의적인 프로그램은 SSD의 FTL 기능 (예: GC 및 웨어 레벨링)을 가로채고 플래시 관리를 혼란스럽게 할 수 있습니다. 이로 인해 데이터 손실이나 장치 파괴가 발생할 수 있습니다.</p>
+</blockquote>
+
+<blockquote>
+  <p>악의적 사용자는 내부 저장소 프로그램이 플래시 칩에서 SSD DRAM으로 데이터를 로드할 때와 같은 물리적 공격으로부터 플래시 칩에 저장된 사용자 데이터를 탈취할 수 있습니다.</p>
+</blockquote>
+
+<p>이러한 공격에 대응하기 위한 대안적인 솔루션은 내부 저장소 컴퓨팅을 위한 운영 체제 또는 하이퍼바이저를 개발하는 것입니다. 그러나 SSD 컨트롤러의 제한된 자원으로 인해 완전한 운영 체제를 실행하는 것은 SSD에 상당한 오버헤드를 초래하고 공격 표면을 증가시킬 수 있다.</p>
+
+<p>또한 이러한 기술은 보드 수준의 물리적 공격과 같은 앞서 언급한 공격에 대응하기에 충분하지 않습니다. 컴퓨팅을 저장 장치에 가깝게 이동함에 따라 이러한 비전통적인 컴퓨팅 패러다임을 위한 경량 실행 환경이 매우 바람직합니다</p>
+
+<blockquote>
+  <p>비전통적인 컴퓨팅 패러다임을 위한 경량 실행 환경이 필요하다</p>
+</blockquote>
+
+<h1 id="5-위협-모델">[5] 위협 모델</h1>
+
+<ol>
+  <li>시스템 전반에 걸친 공유 리소로서 SSD는 여러 응용 프로그램에 널리 사용된다. 기존의 내부 저장소 프레임워크는 사용자가 프로그램을 SSD로 오프로드할 수 도록 허용함.</li>
+  <li>한 번 프로그램이 SSD로 오프로드되면, 내부 저장소 프로그램은 호스트 운영 체제의 제어를 벗어나 새로운 실행 환경에서 공격을 시작</li>
+  <li>우리의 위협 모델은 신뢰할 수 없는 플랫폼 운영자에 의해 시작될 수 있는 잠재적인 물리적 공격을 고려</li>
+</ol>
+
+<p>내부 저장소 컴퓨팅을 위한 최초의 TEE(Tusted Execution Environment) 프레임워크</p>
+
+<p>세 가지 공격에 대응하기 위해 목표로 합니다</p>
+
+<p>내부 저장공간에 대한 공격</p>
+
+<p>핵심 FTL 기능에 대한 공격</p>
+
+<p>플래시 칩과 내부 저장공간에서 만들어진 데이터에 대한 가능한 물리적 공격</p>
+
+<h1 id="8--protecting-flash-translation-layer">[8]  Protecting Flash Translation Layer</h1>
+
+<p><img src="https://velog.velcdn.com/images/doogunwo/post/028fc857-a4d0-4ec5-9410-c05d0fc0d9de/image.png" alt="" /></p>
+<ul>
+  <li>
+    <p>ARM TrustZone를 확장하여 FTL의 다른 엔티티의 보안 격리 및 보호를 위한 안전 및 일반 월드를 생성하고, 메모리 암호화 엔진 (MEE)으로 메모리 암호화 및 검증을 가능</p>
+
+    <p>이 문장은 ARM TrustZone 기술을 확장하여 FTL(Flash Translation Layer)의 다른 엔티티들을 보안적으로 격리하고 보호하기 위한 안전한 영역(secure world)과 일반 영역(normal world)을 생성하였다는 내용입니다.</p>
+
+    <p>또한, 메모리 암호화 엔진(Memory Encryption Engine, MEE)을 사용하여 메모리의 암호화와 검증을 가능케 하였다는 내용입니다.</p>
+
+    <p>이것은 기기의 보안을 강화하기 위한 방법으로, 특히 메모리에 저장된 정보가 외부로부터 보호 받을 수 있도록 하는 중요한 기술적 접근 방식을 나타냅니다</p>
+  </li>
+</ul>
+
+<p>FTL의 보안이 약해서 악의적인 내부 저장소 프로그램이 이를 제어하게 되면, 다른 사용자의 데이터를 읽거나 지울 수 있고, 덮어쓸 수도 있다.</p>
+
+<p>데이터 손실 및 유출과 같은 심각한 결과를 초래할 수 있음</p>
+
+<p>안전한 메모리 영역은 그림4에 나타나 있다.</p>
+
+<p>내 생각엔 FTL 및 IceClave 런타이 안전한 구역에서 실행되도록 하고, 전체 메모리 공간에 대한 읽기/쓰기 권한을 부여한다. 그리고 내부 저장소 응용 프로그램을 일반 구역에 배치하여 응용 프로그램이 FTL 및 IceClave 런타임의 코드 또는 데이터 영역에 접근할 수 없도록 하는 것이 핵심</p>
+
+<h1 id="9-securing-in-storage-dram">[9] Securing In-Storage DRAM</h1>
+
+<p>메모리 암호화의 목표는 메모리 액세스에서 데이터나 코드가 유출되지 않도록 보호하는 것</p>
+
+<blockquote>
+  <p>일반적인 방법은 프로세서의 캐시 라인을 메모리에 쓰기 전에 암호화하는 것입니다. 최신 기술은 일반적으로 분할 카운터 암호화를 사용</p>
+</blockquote>
+
+<blockquote>
+  <p>이 방법은 캐시 라인을 가상의 원시키(OTP)를 사용하여 XOR로 암호화하고, OTP는 AES와 같은 블록 암호를 통해 카운터를 암호화하여 생성됩니다. 각 쓰기 후에 카운터를 증가시켜 시간적으로 고유성을 보장한다.</p>
+</blockquote>
+
+<blockquote>
+  <p>이 카운터는 주요 카운터와 보조 카운터의 연결로 인코딩됩니다. 보조 카운터가 오버플로우되면 주요 카운터가 증가하고, 다른 모든 보조 카운터가 재설정됩니다. 연관된 메모리 블록도 다시 암호화해야 합니다. 따라서 이러한 암호화 방식은 상당한 성능 오버헤드를 가진다</p>
+</blockquote>
+
+<p>내부 저장소 프로그램이 생성한 데이터에 대한 변경사항이나 악의적인 프로그램이 메모리에 액세스하여 데이터를 변경하려는 시도를 감지하고 방어할 수 있도록 하기 위해 필요합니다. 이러한 방식으로 IceClave는 내부 저장소 프로그램의 실행 중에 생성된 데이터를 보호하고, 사용자의 데이터를 안전하게 보호할 수 있습니다</p>
+
+<h1 id="10-동작-및-api">[10] 동작 및 API</h1>
+
+<blockquote>
+  <p>API</p>
+</blockquote>
+
+<p><img src="https://velog.velcdn.com/images/doogunwo/post/91681fd2-740f-4109-9442-c74824da7a70/image.png" alt="" /></p>
+
+<p><img src="https://velog.velcdn.com/images/doogunwo/post/cd6825e5-9034-4c59-a870-dfc851dd04f5/image.png" alt="" /></p>
+
+<p>Figure 9에서 IceClave를 사용하여 인-저장소 프로그램을 실행하는 전체 워크플로우를 설명합니다.</p>
+
+<ul>
+  <li>
+    <p>1.Offload Code</p>
+
+    <p>프로그램을 오프로드하기 위해 호출됩니다. 파라미터 bin은 미리 컴파일된 프로그램의 기계 코드 형식,  lpa는 오프로드된 프로그램에서 필요한 데이터의 논리 페이지 주소(LPA) 목록을 나타냅니다. 이 API는 오프로드된 프로시저를 식별하기 위해 작업 ID (tid)를 인덱스로 사용</p>
+  </li>
+  <li>
+    <p>2.Create TEE</p>
+
+    <p>새로운 TEE를 생성하기 위해 IceClave 런타임에서 호출됩</p>
+  </li>
+  <li>
+    <p>3.read Mapping Table</p>
+
+    <p>TEE를 생성할 때, IceClave 런타임은 TEE에게 일반 메모리 영역에서 메모리 페이지를 할당하고, 동시에 TEE 메타데이터를 초기화하고 안전한 메모리 영역에서 유지합니다. IceClave는 LPAs를 위한 주소 매핑 테이블에서 액세스 권한을 설정하기 위해 SetIDBits를 실행합니다. TEE는 FTL에 의존하지 않고 물리적 페이지 주소를 가져올 수 있습니다(§4.2 참조) 피드백을 받지 않습니다, 보호된 메모리 영역에서 매핑 테이블에 액세스할 수 있습니다</p>
+  </li>
+  <li>
+    <p>4.missing mapping entry</p>
+
+    <p>그러나 인-스토리지 프로그램은 가끔 SSD DRAM에 캐시 미스가 발생할 수 있습니다. 이 경우, TEE는 ReadMappingEntry를 통해 주소 변환 요청을 FTL로 리디렉션해야 합니다</p>
+  </li>
+  <li>
+    <p>5.flash Mgmt</p>
+
+    <p>TEE가 일시 중지되고 안전한 세계로 전환되어 FTL이 누락된 매핑 테이블 페이지를 로드하고 보호된 메모리 영역에 캐시된 매핑 테이블을 업데이트한 후 PPA를 반환</p>
+  </li>
+  <li>
+    <p>6.load data</p>
+
+    <p>데이터 경로 상의 모든 데이터가 스트림 암호 엔진으로 암호화됩니다. 사용자는 암호 해독 키를 오프로드된 프로그램과 함께 TEE로 보내고 런타임 중에 TEE에서 데이터를 복호화</p>
+  </li>
+  <li>
+    <p>7.get result</p>
+
+    <p>IceClave는 NVMe 인터럽트를 사용하여 호스트에 대한 DMA 전송 요청을 시작하여 결과의 준비 상태를 신호로 전달합니다. 결과는 IceClave 라이브러리에서 제공하는 GetResult (7)를 통해 호스트 메모리로 반환</p>
+  </li>
+  <li>
+    <p>8.teminate TEE</p>
+
+    <p>(8)에서는 TEE 프로그램의 수명 주기 동안 결과가 사용된 리소스를 회수하고 TEE를 종료하기 전에 결과가 TEE의 메타데이터 영역으로 복사됩니다. IceClave는 NVMe 인터럽트를 사용하여 호스트에 DMA 전송 요청을 시작하고 결과의 준비가 되었음을 신호로 보냅니다. 결과는 IceClave 라이브러리에서 제공되는 GetResult를 통해 호스트 메모리로 반환</p>
+  </li>
+</ul>
+
+<h1 id="11-구현-정보">[11] 구현 정보</h1>
+
+<p><img src="https://velog.velcdn.com/images/doogunwo/post/31296e58-f6dd-49b1-8b43-3d44fd924e8e/image.png" alt="" /></p>
+
+<h1 id="12-실험-설정">[12] 실험 설정</h1>
+
+<p><img src="https://velog.velcdn.com/images/doogunwo/post/25592a8b-6bba-4199-9379-93dc5193735a/image.png" alt="" /></p>
+
+<h1 id="13--performance-of-iceclave">[13]  Performance of IceClave</h1>
+
+<p><img src="https://velog.velcdn.com/images/doogunwo/post/6ab948da-b9f1-4580-a0ea-70ad19cc1b83/image.png" alt="" /></p>
+<ul>
+  <li><strong>TEE 생성 및 삭제 시간:</strong> IceClave는 TEE를 생성하는 데 95µs, 삭제하는 데 58µs 소요됩니다.</li>
+  <li><strong>컨텍스트 스위치 오버헤드:</strong> 보안 세계와 일반 세계 간의 컨텍스트 스위치 오버헤드는 3.8µs입니다.</li>
+  <li><strong>메모리 암호화 및 검증 시간:</strong> 메모리 암호화는 평균 102.6ns, 검증은 151.2ns가 소요됩니다.</li>
+  <li><strong>추가 메모리 트래픽:</strong> 메모리 암호화와 검증으로 인해 메모리 트래픽은 각각 평균 20.26%와 14.51% 증가합니다.</li>
+</ul>
+
+<h1 id="14-multi-tenant-iceclave의-성능">[14] Multi-tenant IceClave의 성능</h1>
+
+<p>IceClave의 효율성을 더 평가하기 위해, 여러 IceClave 인스턴스를 동시에 실행하고, 각 인스턴스는 Table 4에 설명된 인-스토리지 워크로드 중 하나를 호스팅합니다. 우리는 각 인-스토리지 애플리케이션이 다른 인스턴스와 동시에 실행되는 경우의 애플리케이션 성능을 비교합니다.</p>
+
+<p>그림 17에 나타난 바와 같이, TPC-C 인스턴스를 다른 워크로드와 함께 공존시키면, 인-스토리지 애플리케이션의 성능이 6.1–15.7% 감소합니다. 공존하는 인스턴스 수를 늘릴수록(그림 18 참조), 그들의 성능은 평균적으로 21.4% 감소합니다. 이는 주로 (1) 공존 IceClave 인스턴스 간의 계산 간섭 및 (2) 보호된 메모리 영역의 캐시된 매핑 테이블에서의 캐시 미스(최대 8.7%)로 인해 발생합니다. 그러나 이러한 인-스토리지 프로그램은 여전히 SSD의 외부 I/O 대역폭에 제약을 받는 호스트 기반 접근법보다 성능이 우수합니다.</p>
+
+<h1 id="15-결론">[15] 결론</h1>
+
+<p>SSD 컨트롤러에서의 TEE 지원 부족으로 인해, 악의적인 사용자가 오프로드된 프로그램을 간섭하고, 플래시 관리를 해치며, 사용자 데이터를 도난하고 파괴할 수 있음. 이를 해결하기 위해, 우리는 인-스토리지 프로그램과 플래시 관리 간의 보안 격리를 가능하게 하는 경량 TEE인 IceClave를 개발했습니다. IceClave는 최소한의 하드웨어 비용으로 물리적 공격에 대항할 수 있음</p>
+
+
+  </div>
+</article>
+
+        </main>
+      </div>
+    </div>
+    <script src="/assets/js/main.js" defer></script>
+  </body>
+</html>
