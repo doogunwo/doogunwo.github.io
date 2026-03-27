@@ -5,10 +5,10 @@ categories:
   - writing
   - blockchain
 tags:
-  - 블록체인
-  - 작업증명
+  - 논문리뷰
+thumbnail: https://velog.velcdn.com/images/doogunwo/post/bbebe60d-431b-47ae-8dde-c237def60d6d/image.png
 ---
-# 비트코인
+### 비트코인
 
 > Proof of Work
 
@@ -30,9 +30,9 @@ ref 1) https://en.wikipedia.org/wiki/Hashcash
 
 결국 해당 기술은 비트코인에서 사용되어 많은 자원을 소모하도록 결과를 초래했다.
 
-# 실험
+### 실험
 
-비트코인에서 해시값을 찾아서 작업증명을 하는 동작에는 정말 많은 자원이 소모된다는 것을 우리 대부분은 알 것 이다. 그럼 소스코드 작성을 하여서 Nonce 값에 따라 시간 소요 차이를 알아보자.
+비트코인의 작업 증명은 많은 자원을 소모하는 과정이라는 점을 쉽게 확인할 수 있다. 소스코드를 작성해 Nonce 값에 따라 시간 소요 차이를 확인해본다.
 
 ```cpp
 #include <iostream>
@@ -101,13 +101,13 @@ int main() {
 ```
 
 
-이 코드는 Hashcash의 개념을 사용하여 특정 prefix와 난이도(difficulty)에 해당하는 해시를 생성한다.. 여기서 prefix는 일반적으로 이메일 주소와 포트 번호와 같은 정보를 나타내며, difficulty는 원하는 해시값의 선행 0의 개수를 의미하게 된다.
+이 코드는 Hashcash의 개념을 사용하여 특정 prefix와 난이도(difficulty)에 해당하는 해시를 생성한다. 여기서 prefix는 일반적으로 이메일 주소와 포트 번호와 같은 정보를 나타내며, difficulty는 원하는 해시값의 선행 0의 개수를 의미한다.
 
 calculateHash: 입력된 문자열을 SHA-256 해시 함수를 사용하여 해싱하는데, 이 함수는 OpenSSL 라이브러리를 사용하여 구현되었다.
 
 generateHashcash: 주어진 prefix와 difficulty를 바탕으로 해시값을 생성하고 이 함수에서는 nonce 값을 조정하여 원하는 difficulty를 만족하는 해시값을 찾는다.
 
-main: 프로그램의 진입점입니다. 여기서는 prefix와 difficulty를 설정하고 generateHashcash 함수를 호출하여 해시캐시 값을 생성한다. 생성된 해시캐시 값을 출력함.
+main: 프로그램의 진입점이다. 여기서는 prefix와 difficulty를 설정하고 generateHashcash 함수를 호출해 해시캐시 값을 생성한다. 생성된 해시캐시 값을 출력한다.
 
 ![](https://velog.velcdn.com/images/doogunwo/post/bbebe60d-431b-47ae-8dde-c237def60d6d/image.png)
 

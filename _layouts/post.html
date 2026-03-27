@@ -1,25 +1,44 @@
 ---
 layout: default
 ---
-  <article class="post">
-    <header class="post-header">
-      <h1>{{ page.title }}</h1>
-      <div class="post-meta">
-        <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%Y.%m.%d" }}</time>
-        <span class="post-meta__sep">•</span>
-        <span class="post-meta__author">{{ page.author | default: site.author }}</span>
-        {% if page.tags and page.tags.size > 0 %}
-          <span class="post-meta__sep">•</span>
-          <span class="post-meta__tags">
-            {% for tag in page.tags %}
-              <a class="tag-pill" href="{{ '/' | relative_url }}?tag={{ tag | slugify }}">{{ tag }}</a>{% unless forloop.last %} {% endunless %}
-            {% endfor %}
-          </span>
-        {% endif %}
+<article class="post post--editor">
+  <div class="editor-frame">
+    <div class="editor-frame__bar" aria-hidden="true">
+      <div class="editor-window-controls">
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
-  </header>
+      <div class="editor-frame__title">
+        <span class="editor-frame__file">{{ page.title }}</span>
+        <span class="editor-frame__ext">.md</span>
+      </div>
+      <div class="editor-frame__mode">Markdown</div>
+    </div>
 
-  <div class="post-content prose">
-    {{ content }}
+    <div class="editor-frame__body">
+      <header class="post-header">
+        <div class="post-header__copy">
+          <h1>{{ page.title }}</h1>
+          <div class="post-meta">
+            <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%Y.%m.%d" }}</time>
+            <span class="post-meta__sep">•</span>
+            <span class="post-meta__author">{{ page.author | default: site.author }}</span>
+            {% if page.tags and page.tags.size > 0 %}
+              <span class="post-meta__sep">•</span>
+              <span class="post-meta__tags">
+                {% for tag in page.tags %}
+                  <a class="tag-pill" href="{{ '/' | relative_url }}?tag={{ tag | slugify }}">{{ tag }}</a>{% unless forloop.last %} {% endunless %}
+                {% endfor %}
+              </span>
+            {% endif %}
+          </div>
+        </div>
+      </header>
+
+      <div class="post-content prose post-content--editor">
+        {{ content }}
+      </div>
+    </div>
   </div>
 </article>
