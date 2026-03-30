@@ -2,38 +2,45 @@
 layout: default
 ---
 <article class="post post--editor">
-  <div class="editor-frame">
-    <div class="editor-frame__bar" aria-hidden="true">
-      <div class="editor-window-controls">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    </div>
-
-    <div class="editor-frame__body">
-      <header class="post-header">
-        <div class="post-header__copy">
-          <h1>{{ page.title }}</h1>
-          <div class="post-meta">
-            <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%Y.%m.%d" }}</time>
-            <span class="post-meta__sep">•</span>
-            <span class="post-meta__author">{{ page.author | default: site.author }}</span>
-            {% if page.tags and page.tags.size > 0 %}
-              <span class="post-meta__sep">•</span>
-              <span class="post-meta__tags">
-                {% for tag in page.tags %}
-                  <a class="tag-pill" href="{{ '/' | relative_url }}?tag={{ tag | slugify }}">{{ tag }}</a>{% unless forloop.last %} {% endunless %}
-                {% endfor %}
-              </span>
-            {% endif %}
-          </div>
+  <div class="post-layout">
+    <div class="editor-frame">
+      <div class="editor-frame__bar" aria-hidden="true">
+        <div class="editor-window-controls">
+          <span></span>
+          <span></span>
+          <span></span>
         </div>
-      </header>
+      </div>
 
-      <div class="post-content prose post-content--editor">
-        {{ content }}
+      <div class="editor-frame__body">
+        <header class="post-header">
+          <div class="post-header__copy">
+            <h1>{{ page.title }}</h1>
+            <div class="post-meta">
+              <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%Y.%m.%d" }}</time>
+              <span class="post-meta__sep">•</span>
+              <span class="post-meta__author">{{ page.author | default: site.author }}</span>
+              {% if page.tags and page.tags.size > 0 %}
+                <span class="post-meta__sep">•</span>
+                <span class="post-meta__tags">
+                  {% for tag in page.tags %}
+                    <a class="tag-pill" href="{{ '/' | relative_url }}?tag={{ tag | slugify }}">{{ tag }}</a>{% unless forloop.last %} {% endunless %}
+                  {% endfor %}
+                </span>
+              {% endif %}
+            </div>
+          </div>
+        </header>
+
+        <div class="post-content prose post-content--editor">
+          {{ content }}
+        </div>
       </div>
     </div>
+
+    <aside class="post-outline" data-post-outline hidden>
+      <p class="post-outline__title">목차</p>
+      <nav class="post-outline__nav" data-post-outline-nav aria-label="문서 목차"></nav>
+    </aside>
   </div>
 </article>
