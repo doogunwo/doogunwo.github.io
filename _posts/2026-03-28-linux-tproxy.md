@@ -79,5 +79,8 @@ flow 수가 많거나 새 연결 생성률이 높으면 flow 유지에 대해서
 다시 확인해야 하는 구조적 복잡성까지 포함된다.
 
 최종적으로 멀티코어 확장 비용이다. NAT/transparent proxy는 보통 코어별 완전 독립 처리가 어렵다.
-flow state, NAT mapping, 또는 후속 패킷 전달이 다른 코어와 얽히면 inter-core queue, synchronization, cacheline bouncing 같은 비용이 생깁니다. NFOS 논문은 NAT의 확장성 병목을 구체적으로 코어 간 패킷 전달 큐 contention으로 지적한다.
+flow state, NAT mapping, 또는 후속 패킷 전달이 다른 코어와 얽히면 
+inter-core queue, synchronization, cacheline bouncing 같은 비용이 생긴다.
+
+NFOS 논문은 NAT의 확장성 병목을 구체적으로 코어 간 패킷 전달 큐 contention으로 지적한다.
 
