@@ -11,7 +11,7 @@
   </head>
   <body data-thumbnail-fallback="{{ '/assets/images/default-thumbnail.svg' | relative_url }}">
     <div class="site-shell">
-      <header class="site-top">
+      <header class="site-top{% if page.url == '/' %} site-top--home{% endif %}">
         <div class="site-branding">
           <div class="site-brand">
             <a class="site-brand__link" href="{{ '/' | relative_url }}">도건우 기술 블로그</a>
@@ -35,6 +35,16 @@
             </ul>
           </section>
         </div>
+        {% if page.url == '/' %}
+          <div class="site-hero-art" aria-hidden="true">
+            <div class="site-hero-art__frame">
+              <div class="site-hero-art__characters">
+                <img class="site-hero-art__character" src="{{ '/2-removebg-preview copy.png' | relative_url }}" alt="" loading="eager" decoding="async">
+                <img class="site-hero-art__character site-hero-art__character--secondary" src="{{ '/3-removebg.png' | relative_url }}" alt="" loading="eager" decoding="async">
+              </div>
+            </div>
+          </div>
+        {% endif %}
       </header>
 
       <div class="site-content">

@@ -7,7 +7,7 @@
     <title>Linux TPROXY  · doogunwo</title>
     <meta name="description" content="">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard.css">
-    <link rel="stylesheet" href="/assets/css/main.css?v=1774885421">
+    <link rel="stylesheet" href="/assets/css/main.css?v=1774885785-framechar">
   </head>
   <body data-thumbnail-fallback="/assets/images/default-thumbnail.svg">
     <div class="site-shell">
@@ -67,9 +67,8 @@
         </section>
 
         <main class="site-main">
-          <article class="post post--editor">
-  <div class="post-layout">
-    <div class="editor-frame">
+<article class="post post--editor">
+  <div class="post-layout">    <div class="editor-frame">
       <div class="editor-frame__bar" aria-hidden="true">
         <div class="editor-window-controls">
           <span></span>
@@ -107,7 +106,7 @@
 사용자는 그냥 원래 서버에 접속한다고 생각하지만, 
 실제로는 중간의 프록시가 그 연결을 먼저 받아서 검사, 제어, 전달, 최적화를 수행한다.</p>
 
-<h3 id="그러면-일반적인-프록시가-존재하는지">그러면 일반적인 프록시가 존재하는지?</h3>
+<h3 id="일반적인-프록시가-존재하는지">일반적인 프록시가 존재하는지?</h3>
 <p>당연히 투명 프록시와 다르게 일반 프록시도 존재한다. 
 간단한 차이는 일반 프록시는 목적지 IP를 프록시 서버의 IP로 변환하지만
 TProxy는 패킷의 IP 헤더(Source/Destination IP)를 전혀 수정하지 않는다.</p>
@@ -190,6 +189,12 @@ inter-core queue, synchronization, cacheline bouncing 같은 비용이 생긴다
 
 <p>NFOS 논문은 NAT의 확장성 병목을 구체적으로 코어 간 패킷 전달 큐 contention으로 지적한다.</p>
 
+<h3 id="tproxy-기술이-뭔데">TPROXY 기술이 뭔데?</h3>
+
+<h3 id="tproxy-설정은-어떻게-하지">TPROXY 설정은 어떻게 하지?</h3>
+
+<h3 id="tproxy-패킷-커널-경로가-궁금하다">TPROXY 패킷 커널 경로가 궁금하다.</h3>
+
 
         </div>
       </div>
@@ -205,6 +210,6 @@ inter-core queue, synchronization, cacheline bouncing 같은 비용이 생긴다
         </main>
       </div>
     </div>
-    <script src="/assets/js/main.js?v=1774885421" defer></script>
+    <script src="/assets/js/main.js?v=1774885785" defer></script>
   </body>
 </html>
