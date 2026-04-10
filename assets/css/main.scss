@@ -108,9 +108,7 @@ a:hover {
   border-radius: calc(var(--radius) + 8px);
   background-color: var(--bg);
   background-image: none;
-  position: relative;
   overflow: visible;
-  z-index: 1;
 }
 
 .site-top--home .site-branding {
@@ -146,6 +144,50 @@ a:hover {
 
 .site-top--home .contact-list--sidebar {
   justify-content: flex-start;
+}
+
+.site-hero-art {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  height: 100%;
+}
+
+.site-hero-art__frame {
+  width: min(100%, 300px);
+  min-height: 140px;
+  aspect-ratio: 1;
+  border-radius: 22px;
+  overflow: visible;
+  border: none;
+  box-shadow: none;
+  background: var(--bg);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}
+
+.site-hero-art__characters {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  padding: 10px 2px 0;
+  transform: translateY(14px);
+}
+
+.site-hero-art__character {
+  flex: 0 0 auto;
+  width: 58%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  object-position: center bottom;
 }
 
 .site-content {
@@ -205,57 +247,6 @@ a:hover {
   font-weight: 700;
   letter-spacing: -0.05em;
   line-height: 1;
-}
-
-.site-hero-art {
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
-  height: 100%;
-}
-
-.site-hero-art__frame {
-  width: min(100%, 300px);
-  min-height: 140px;
-  aspect-ratio: 1;
-  border-radius: 22px;
-  overflow: visible;
-  border: none;
-  box-shadow: none;
-  background: var(--bg);
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  position: relative;
-  z-index: 2;
-}
-
-.site-hero-art__characters {
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  gap: 0;
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-  padding: 10px 2px 0;
-  transform: translateY(14px);
-}
-
-.site-hero-art__character {
-  flex: 0 0 auto;
-  width: 48%;
-  height: auto;
-  display: block;
-  object-fit: contain;
-  object-position: center bottom;
-}
-
-.site-hero-art__character--secondary {
-  flex-shrink: 0;
-  width: 50%;
-  margin-left: -100px;
-  transform: translateY(3px);
 }
 
 .home-divider {

@@ -1,3 +1,4 @@
+
 :root {
   --bg: #ffffff;
   --bg-alt: #ffffff;
@@ -47,7 +48,8 @@ body::before {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  background: none;
+  background:
+    none;
 }
 
 body::after {
@@ -55,7 +57,8 @@ body::after {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  background: none;
+  background:
+    none;
   background-size: auto, auto, auto, 72px 72px, 72px 72px;
   opacity: 0.5;
 }
@@ -70,7 +73,7 @@ a:hover {
 }
 
 .site-shell {
-  width: min(1000px, 100% - 32px);
+  width: min(1000px, calc(100% - 32px));
   margin: 0 auto;
   padding: 18px 0 36px;
   display: grid;
@@ -103,9 +106,7 @@ a:hover {
   border-radius: calc(var(--radius) + 8px);
   background-color: var(--bg);
   background-image: none;
-  position: relative;
   overflow: visible;
-  z-index: 1;
 }
 
 .site-top--home .site-branding {
@@ -141,6 +142,50 @@ a:hover {
 
 .site-top--home .contact-list--sidebar {
   justify-content: flex-start;
+}
+
+.site-hero-art {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  height: 100%;
+}
+
+.site-hero-art__frame {
+  width: min(100%, 300px);
+  min-height: 140px;
+  aspect-ratio: 1;
+  border-radius: 22px;
+  overflow: visible;
+  border: none;
+  box-shadow: none;
+  background: var(--bg);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}
+
+.site-hero-art__characters {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  padding: 10px 2px 0;
+  transform: translateY(14px);
+}
+
+.site-hero-art__character {
+  flex: 0 0 auto;
+  width: 58%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  object-position: center bottom;
 }
 
 .site-content {
@@ -200,57 +245,6 @@ a:hover {
   font-weight: 700;
   letter-spacing: -0.05em;
   line-height: 1;
-}
-
-.site-hero-art {
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
-  height: 100%;
-}
-
-.site-hero-art__frame {
-  width: min(100%, 200px);
-  min-height: 140px;
-  aspect-ratio: 1;
-  border-radius: 22px;
-  overflow: visible;
-  border: none;
-  box-shadow: none;
-  background: var(--bg);
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  position: relative;
-  z-index: 2;
-}
-
-.site-hero-art__characters {
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  gap: 0;
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-  padding: 10px 2px 0;
-  transform: translateY(14px);
-}
-
-.site-hero-art__character {
-  flex: 0 0 auto;
-  width: 48%;
-  height: auto;
-  display: block;
-  object-fit: contain;
-  object-position: center bottom;
-}
-
-.site-hero-art__character--secondary {
-  flex-shrink: 0;
-  width: 50%;
-  margin-left: -50px;
-  transform: translateY(3px);
 }
 
 .home-divider {
@@ -464,7 +458,7 @@ a:hover {
 }
 
 .tag-list a.is-active,
-.tag-list a[aria-current=page] {
+.tag-list a[aria-current="page"] {
   color: #111111;
   font-weight: 700;
 }
@@ -544,7 +538,7 @@ a:hover {
 }
 
 .home-divider {
-  grid-column: 1/-1;
+  grid-column: 1 / -1;
   width: 100%;
   height: 1px;
   margin: 2px 0 12px;
@@ -656,7 +650,7 @@ a:hover {
 .post-card__thumb {
   display: block;
   width: 100%;
-  aspect-ratio: 16/10;
+  aspect-ratio: 16 / 10;
   border-radius: 16px;
   overflow: hidden;
   background: #f5f5f5;
@@ -748,7 +742,7 @@ a:hover {
 }
 
 .about-card--full {
-  grid-column: 1/-1;
+  grid-column: 1 / -1;
 }
 
 .series-card__header {
@@ -868,7 +862,6 @@ a:hover {
   overflow: hidden;
   background: var(--surface);
 }
-
 
 .editor-frame__bar {
   display: flex;
@@ -1064,113 +1057,140 @@ a:hover {
 
 @media (max-width: 920px) {
   .site-shell {
-    width: min(1000px, 100% - 40px);
+    width: min(1000px, calc(100% - 40px));
     padding-top: 24px;
   }
+
   .site-top,
   .site-content {
     grid-template-columns: 1fr;
   }
+
   .site-top--home {
     gap: 14px;
     padding: 10px;
   }
+
   .site-top--home .site-branding {
     gap: 14px;
     min-height: auto;
     padding: 16px 18px;
   }
+
   .site-hero-art__frame {
     width: min(100%, 168px);
     min-height: 120px;
     margin-left: auto;
   }
+
   .site-hero-art__characters {
     transform: translateY(10px);
   }
+
   .post-layout {
     grid-template-columns: 1fr;
   }
+
   .home-divider {
     width: 100%;
   }
+
   .site-identity {
     justify-items: center;
     justify-self: stretch;
     width: auto;
   }
+
   .site-identity__text {
     justify-items: center;
     text-align: center;
   }
+
   .site-contact,
   .sidebar-tags {
     text-align: left;
   }
+
   .post-card,
   .archive-group,
   .about-card,
   .series-card {
     padding: 16px 0 18px;
   }
+
   .editor-frame__body {
     padding: 16px 18px 22px;
   }
+
   .about-grid,
   .series-grid,
   .tag-archive {
     grid-template-columns: 1fr;
   }
+
   .post-card {
     grid-template-columns: 1fr;
     gap: 12px;
     padding: 16px 0;
   }
+
   .post-card__thumb {
     width: min(100%, 360px);
   }
+
   .post-outline {
     display: none;
   }
 }
+
 @media (max-width: 640px) {
   .sidebar-avatar {
     width: 132px;
   }
+
   .site-shell {
     width: calc(100% - 24px);
   }
+
   .site-top--home {
     padding: 10px;
     border-radius: 20px;
   }
+
   .site-top--home .site-branding {
     padding: 14px 16px;
     border-radius: 18px;
   }
+
   .site-hero-art__frame {
     width: min(100%, 140px);
     min-height: 100px;
     border-radius: 18px;
   }
+
   .site-hero-art__characters {
     transform: translateY(8px);
   }
+
   .page-header h1,
   .post-header h1 {
     font-size: clamp(1.9rem, 11vw, 2.8rem);
   }
+
   .prose {
     font-size: 0.94rem;
   }
+
   .section-heading {
     flex-direction: column;
     align-items: flex-start;
   }
+
   .archive-list li {
     flex-direction: column;
     align-items: flex-start;
   }
+
   .series-list li {
     flex-direction: column;
     align-items: flex-start;
