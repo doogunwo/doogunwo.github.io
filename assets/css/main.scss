@@ -95,68 +95,72 @@ a:hover {
 
 .site-branding {
   display: grid;
-  gap: 12px;
+  gap: 8px;
+  min-height: 72px;
+  padding: 8px 18px;
   align-content: start;
+  justify-content: start;
+  justify-items: start;
+  text-align: left;
 }
 
 .site-top--home {
-  grid-template-columns: minmax(0, 1fr) minmax(180px, 220px);
-  align-items: stretch;
-  gap: 16px;
-  padding: 10px 12px;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: start;
+  gap: 0;
+  padding: 0;
   border: none;
   border-radius: calc(var(--radius) + 8px);
   background-color: var(--bg);
   background-image: none;
   overflow: visible;
+  position: relative;
 }
 
 .site-top--home .site-branding {
-  gap: 12px;
-  min-height: 140px;
-  padding: 18px 22px;
   border: none;
   border-radius: 22px;
   background: var(--bg);
   box-shadow: none;
-  justify-content: start;
-  justify-items: start;
-  text-align: left;
-  align-content: start;
 }
 
-.site-top--home .site-brand,
-.site-top--home .site-contact {
+.site-brand,
+.site-contact {
   padding: 0;
   width: 100%;
   justify-self: start;
 }
 
-.site-top--home .site-contact {
+.site-contact {
   justify-items: start;
 }
 
-.site-top--home .site-brand__link {
+.site-brand__link {
   display: block;
   width: max-content;
   text-align: left;
 }
 
-.site-top--home .contact-list--sidebar {
+.contact-list--sidebar {
   justify-content: flex-start;
 }
 
 .site-hero-art {
+  position: absolute;
+  top: 8px;
+  right: 600px;
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
   justify-content: flex-end;
-  height: 100%;
+  height: auto;
+  pointer-events: none;
 }
 
 .site-hero-art__frame {
-  width: min(100%, 300px);
-  min-height: 140px;
-  aspect-ratio: 1;
+  width: min(100%, 180px);
+  height: 72px;
+  min-height: 72px;
+  aspect-ratio: auto;
   border-radius: 22px;
   overflow: visible;
   border: none;
@@ -177,13 +181,13 @@ a:hover {
   width: 100%;
   height: 100%;
   overflow: visible;
-  padding: 10px 2px 0;
-  transform: translateY(14px);
+  padding: 0 2px 0;
+  transform: translateY(4px);
 }
 
 .site-hero-art__character {
   flex: 0 0 auto;
-  width: 58%;
+  width: 56%;
   height: auto;
   display: block;
   object-fit: contain;
@@ -1077,6 +1081,11 @@ a:hover {
     gap: 14px;
     min-height: auto;
     padding: 16px 18px;
+  }
+
+  .site-hero-art {
+    position: static;
+    pointer-events: auto;
   }
 
   .site-hero-art__frame {
