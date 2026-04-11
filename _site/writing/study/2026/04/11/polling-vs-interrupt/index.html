@@ -4,10 +4,10 @@
     
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>졸업작품 이야기1 · doogunwo</title>
+    <title>인터럽트 vs 폴링 · doogunwo</title>
     <meta name="description" content="">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard.css">
-    <link rel="stylesheet" href="/assets/css/main.css?v=1775926713">
+    <link rel="stylesheet" href="/assets/css/main.css?v=1775928176">
   </head>
   <body data-thumbnail-fallback="/assets/images/default-thumbnail.svg">
     <div class="site-shell">
@@ -81,16 +81,16 @@
       <div class="editor-frame__body">
         <header class="post-header">
           <div class="post-header__copy">
-            <h1>졸업작품 이야기1</h1>
+            <h1>인터럽트 vs 폴링</h1>
             <div class="post-meta">
-              <time datetime="2023-11-05T00:00:00+09:00">2023.11.05</time>
+              <time datetime="2026-04-11T00:00:00+09:00">2026.04.11</time>
               <span class="post-meta__sep">•</span>
               <span class="post-meta__author">도건우</span>
               
                 <span class="post-meta__sep">•</span>
                 <span class="post-meta__tags">
                   
-                    <a class="tag-pill" href="/?tag=졸업작품">졸업작품</a>
+                    <a class="tag-pill" href="/?tag=운영체제">운영체제</a>
                   
                 </span>
               
@@ -99,33 +99,12 @@
         </header>
 
         <div class="post-content prose post-content--editor">
-          <p>졸업을 앞두고 1학기 때 제출했던 캡스톤 디자인2 수업의 ‘얼굴 인식 시스템’을 기능과 UI 측면에서 보완해 다시 제출하고자 했다.</p>
+          <p>리눅스의  고성능 시스템 소프트웨어는 왜 폴링을 사용할까?</p>
 
-<p>이 주제는 웹 앱과 머신 러닝을 사용해 클라이언트 카메라에 인식된 얼굴을 구분하고, 버스 요금 결제를 제공하는 시스템이었다.</p>
+<p>폴링을 사용하는 고성능 시스템 소프트웨어는 대표적으로 DPDK, DPDK를 기반으로 한 SPDK 그리고 io-uring이 있다.</p>
 
-<p>하지만 주제의 규모가 크고 개발 인력이 한 명뿐이어서 얼굴 인식 시스템까지만 완성되었다.</p>
+<p>기본적으로 리눅스는 인터럽트(Interrupt)를 활용한다.</p>
 
-<p><img src="https://velog.velcdn.com/images/doogunwo/post/d516e916-1555-45b5-a474-18de4a1edf14/image.gif" alt="" /></p>
-
-<p>Nodejs를 메인서버로 두고 노드를 통해서 머신러닝 제어용 flask와 mysql 제어 등등… 통제하고</p>
-
-<p>flask로 node와 통신을 통해 머신 러닝 서버를 따로 두도록 했다.</p>
-
-<p>컴퓨터공학과 4학년 수준의 웹 개발 자체는 비교적 일반적이지만, 실제로 어려웠던 부분은 웹 앱 개발보다 머신러닝 모델 개발이었다.</p>
-
-<p>한 달간 연구를 진행했지만, 실제 서비스가 가능한 수준의 성능을 내기 어려웠다. 상당히 타협하더라도 ACC 0.6 이상을 확보하기 쉽지 않았다.</p>
-
-<p>결국 haar-cascade를 통해 얼굴 구분만 가능하도록 구현했다.</p>
-
-<p>Nodejs 
-https://github.com/doogunwo/Tagober_server</p>
-
-<p>Flask
-https://github.com/doogunwo/TagoBer_Flask</p>
-
-<p>Node로 로그인한 뒤 이미지 등록을 수행하고, 등록된 이미지 경로를 데이터베이스에 저장한 다음 이미지는 로컬에 보관했다. 이후 Flask에서 이미지 등록 요청마다 haar-cascade를 재학습해 클라이언트 카메라에서 얼굴 인식과 구분을 수행했다.</p>
-
-<p>이 프로젝트를 통해 확인한 점은 프로그램 자체를 만드는 일보다 서비스 수준의 완성도를 맞추는 일이 훨씬 더 어렵다는 점이다.</p>
 
         </div>
       </div>
@@ -141,6 +120,6 @@ https://github.com/doogunwo/TagoBer_Flask</p>
         </main>
       </div>
     </div>
-    <script src="/assets/js/main.js?v=1775926713" defer></script>
+    <script src="/assets/js/main.js?v=1775928176" defer></script>
   </body>
 </html>
