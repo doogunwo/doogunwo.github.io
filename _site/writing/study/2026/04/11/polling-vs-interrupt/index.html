@@ -7,7 +7,7 @@
     <title>인터럽트 vs 폴링 · doogunwo</title>
     <meta name="description" content="">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard.css">
-    <link rel="stylesheet" href="/assets/css/main.css?v=1775928176">
+    <link rel="stylesheet" href="/assets/css/main.css?v=1775932534">
   </head>
   <body data-thumbnail-fallback="/assets/images/default-thumbnail.svg">
     <div class="site-shell">
@@ -103,7 +103,114 @@
 
 <p>폴링을 사용하는 고성능 시스템 소프트웨어는 대표적으로 DPDK, DPDK를 기반으로 한 SPDK 그리고 io-uring이 있다.</p>
 
+<h3 id="인터럽트">인터럽트</h3>
+
 <p>기본적으로 리눅스는 인터럽트(Interrupt)를 활용한다.</p>
+
+<p>우선 인터럽트의 큰 분류는 다음과 같다.</p>
+<ul>
+  <li>하드웨어 인터럽트</li>
+  <li>예외(Exception)</li>
+  <li>NMI(Non-Maskable Interrupt)</li>
+</ul>
+
+<p>하드웨어 인터럽트는 디스크, NIC, 키보드, 타이머 같은 장치가 CPU에 보내는 신호이다. 
+x86에서는 APIC 계열이 라우팅을 담당하고, Linux는 이를 generic IRQ 계층이 처리한다.</p>
+
+<p>예외는 CPU가 명령을 실행하다가 직접 감지하는 사건이다. 
+Intel SDM은 예외와 인터럽트를 같은 벡터 체계 안에서 다루지만, 발생 원인과 복귀 의미는 다르다.</p>
+
+<p>NMI는 일반 인터럽트처럼 쉽게 마스킹되지 않는 특별한 경로이다.</p>
+
+<h3 id="인터럽트-동작-순서">인터럽트 동작 순서</h3>
+
+<p>x86/Linux를 기준으로 매우 단순화한 인터럽트는 다음과 같이 동작한다.</p>
+
+<ol>
+  <li>장치가 인터럽트를 발생시킴</li>
+  <li>인터럽트 컨트롤러가 특정 CPU로 라우팅</li>
+  <li>CPU가 현재 문맥 일부를 저장하고 IDT를 통해 핸들러 진입</li>
+  <li>Linux의 low-level entry 코드가 공통 IRQ 진입 처리</li>
+  <li>generic IRQ layer가 해당 IRQ의 flow handler와 드라이버 ISR을 호출</li>
+  <li>빠르게 끝날 일만 처리하고, 나머지는 thread/softirq/NAPI/workqueue 같은 지연 처리로 넘김</li>
+  <li>인터럽트 종료(EOI 등) 후 원래 실행 흐름으로 복귀</li>
+</ol>
+
+<h3 id="인터럽트-구조">인터럽트 구조</h3>
+
+<p>인터럽트는 두 가지 계층으로 구성된다. 
+인터럽트가 들어오자마자 실행되는 계층은 상반부(top half, hardirq)에 해당된다.
+여기서는 장치가 내 인터럽트인지 확인하고, 장치 상태 레지스터 확인한다.
+다음 인터럽트 원인 ack/mask을 찾고 최소한의 completion/RX/TX bookkeeping을 수행한 뒤
+나머지 일은 나중으로 미룬다.</p>
+
+<p>이 경로는 매우 짧아야 하며 길어지면 지연이 발생하게 된다.</p>
+
+<h3 id="linux-generic-irq-계층">Linux generic IRQ 계층</h3>
+
+<p>이 계층은 드라이버가 “이 장치가 어떤 물리적 인터럽트 컨트롤러에 연결됐는지”를 몰라도 되도록 추상화를 제공한다.
+드라이버는 request/enable/disable/free 같은 공통 API를 사용한다.</p>
+
+<p>또 Linux는 IRQ 특성에 따라 서로 다른 flow handler를 둔다.</p>
+
+<ul>
+  <li>handle_level_irq()</li>
+  <li>handle_edge_irq()</li>
+  <li>handle_fasteoi_irq()</li>
+</ul>
+
+<p>구분이 필요한 이유는 하드웨어의 인터럽트 선 성격이 다르기 때문이다.</p>
+
+<p>edge-triggered냐, level-triggered냐에 따라 마스킹/EOI/재진입 처리 방식이 다르다.</p>
+
+<ul>
+  <li>
+    <p>Edge-triggered
+신호의 “변화 순간”을 이벤트로 본다.</p>
+  </li>
+  <li>
+    <p>Level-triggered
+신호가 특정 레벨을 유지하는 동안 pending 상태를 유지한다.</p>
+  </li>
+</ul>
+
+<h3 id="irq-affinity가-성능에-미치는-영향">IRQ affinity가 성능에 미치는 영향</h3>
+
+<p>고성능 환경에서 인터럽트는 어느 CPU에 오느냐가 성능에 직결된다.
+IRQ affinity를 잘못 잡으면 캐시 지역성이 깨지고, NUMA 비용 증가한다.</p>
+
+<p>그래서 멀티큐 장치에서는 큐와 IRQ 벡터를 맞추고 해당 큐를 주로 처리하는 CPU에 핀, 스레드도 최대한 같은 NUMA/CPU 근처에 배치한다.</p>
+
+<h3 id="인터럽트가-성능을-저하시킬까">인터럽트가 성능을 저하시킬까?</h3>
+
+<p>이벤트가 아주 자주 올 때, 실제 일보다 인터럽트 처리 자체에 CPU를 더 많이 사용할 수 있기 때문에
+문제라고 볼 수 있다.</p>
+
+<p>또한 인터럽트율이 너무 높아지면 패킷을 실제로 처리하는 스레드가 일을 못 하고, 시스템이 인터럽트 처리만 하다가 backlog가 차서 패킷을 버리게 된다
+처리마다 인터럽트를 깨우고 재우는 과정은 아주 비효율적이기 때문에 한 번 깨우고 배치 처리하는 방식의 시스템도 선호한다고 한다.</p>
+
+<h3 id="기술사-기출-문제">기술사 기출 문제</h3>
+
+<p>이 주제는 실제로 “운영체제에서 I/O 디바이스를 위한 Polling 방식과 인터럽트 방식을 설명하고 장단점을 비교하시오”라는 문제로
+기술사 기출 문제이다.</p>
+
+<p>즉 I/O 디바이스 관점에서 폴링과 인터럽트 비교는 아주 중요한 주제다.
+다시 돌아와서 이번에는 폴링에 대해서 살펴본다.</p>
+
+<h3 id="폴링">폴링</h3>
+
+<p>폴링은 CPU가 장치의 상태 레지스터나 큐를 주기적으로 직접 확인한다. 
+물론 이벤트가 없더라도 CPU가 반복적으로 확인하므로, 저부하 환경에서는 불필요한 CPU를 소모한다.
+다만 여기서 궁금한 점이 인터럽트 비용이 어느정도 인지 의문이 생긴다.</p>
+
+<p>ATC’19 AIOS 논문은 Optane급 초저지연 SSD에서 4KB read의 device time이 약 7.3 µs 라고 보고하고 있다.
+lock layer만 약 15%, 즉 대략 1.1 µs 수준의 시간을 쓴다고 설명한다.
+또 4KB random read/write에서는 커널 시간이 전체 I/O 지연의 최대 37.6%, 35.5% 까지 차지할 수 있다고 보고한다.</p>
+
+<p>게다가 OSDI’21 Optimizing Storage Performance with Calibrated Interrupts 에서는 단일 코어 실험에서, 
+배치 completion을 더 잘 다룬 방식이 평균 latency를 22 µs 수준으로 유지한 반면
+adaptive delay가 들어간 방식은 29 µs 수준까지 증가한다고 한다. 
+즉 인터럽트 설계 차이만으로도 대략 7 µs 내외의 지연 차이와 30%대 CPU 차이가 나올 수 있다는 의미이다.</p>
 
 
         </div>
@@ -120,6 +227,6 @@
         </main>
       </div>
     </div>
-    <script src="/assets/js/main.js?v=1775928176" defer></script>
+    <script src="/assets/js/main.js?v=1775932534" defer></script>
   </body>
 </html>
