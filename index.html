@@ -3,12 +3,16 @@ title: 홈
 layout: default
 ---
 
+<header class="feed-heading"><p class="eyebrow">THE ENGINEERING JOURNAL</p><h1>기술을 이해하고,<br>배움을 기록합니다.</h1><p>도건우의 기술 블로그 · {{ site.posts | size }}개의 기록</p></header>
+
 <section class="feed" data-page-size="5">
   {% assign posts = site.posts %}
   {% for post in posts %}
     <article class="post-card{% if forloop.index > 5 %} is-hidden{% endif %}" data-tags="{% for tag in post.tags %}{{ tag | slugify }}{% unless forloop.last %},{% endunless %}{% endfor %}">
       <div class="post-card__content">
-        <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+        <p class="post-card__author">{{ post.author | default: site.author }}</p>
+        <h3><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h3>
+        <p class="post-card__excerpt">{{ post.excerpt | strip_html | normalize_whitespace | truncate: 150 | escape }}</p>
         <div class="post-card__meta">
           <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y.%m.%d" }}</time>
           {% if post.tags and post.tags.size > 0 %}
@@ -20,7 +24,7 @@ layout: default
           {% endif %}
         </div>
       </div>
-      <a class="post-card__thumb" href="{{ post.url | relative_url }}" aria-label="{{ post.title }}">
+      <a class="post-card__thumb" href="{{ post.url | relative_url }}" aria-label="{{ post.title | escape }}">
         {% if post.thumbnail %}
           <img src="{{ post.thumbnail }}" alt="" loading="lazy" decoding="async">
         {% else %}

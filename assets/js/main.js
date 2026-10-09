@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const links = document.querySelectorAll("[data-tag-link]");
   const pagination = document.querySelector("[data-pagination]");
 
-  if (feed && cards.length && links.length && pagination) {
+  if (feed && cards.length && links.length) {
     const pageSize = Number(feed.dataset.pageSize || 5);
 
     const buildUrl = (tag, page) => {
@@ -56,6 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     const renderPagination = (tag, currentPage, totalPages) => {
+      if (!pagination) return;
       if (totalPages <= 1) {
         pagination.innerHTML = "";
         pagination.hidden = true;
@@ -142,7 +143,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const outlineNav = document.querySelector("[data-post-outline-nav]");
 
   if (postContent && outline && outlineNav) {
-    const headings = Array.from(postContent.querySelectorAll("h3"));
+    const headings = Array.from(postContent.querySelectorAll("h2, h3"));
     const slugCounts = new Map();
 
     const slugifyHeading = (text) => {

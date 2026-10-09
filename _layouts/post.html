@@ -4,18 +4,11 @@ layout: default
 <article class="post post--editor">
   <div class="post-layout">
     <div class="editor-frame">
-      <div class="editor-frame__bar" aria-hidden="true">
-        <div class="editor-window-controls">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </div>
-
       <div class="editor-frame__body">
         <header class="post-header">
           <div class="post-header__copy">
-            <h1>{{ page.title }}</h1>
+            <a class="back-link" href="{{ '/' | relative_url }}">← 전체 글</a>
+            <h1>{{ page.title | escape }}</h1>
             <div class="post-meta">
               <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%Y.%m.%d" }}</time>
               <span class="post-meta__sep">•</span>

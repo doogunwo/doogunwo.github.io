@@ -9,12 +9,13 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard.css">
     <link rel="stylesheet" href="{{ '/assets/css/main.css?v=' | append: asset_version | relative_url }}">
   </head>
-  <body data-thumbnail-fallback="{{ '/assets/images/default-thumbnail.svg' | relative_url }}">
+  <body class="{% if page.layout == 'post' %}reading-page{% endif %}" data-thumbnail-fallback="{{ '/assets/images/default-thumbnail.svg' | relative_url }}">
+    <a class="skip-link" href="#main">본문으로 바로가기</a>
     <div class="site-shell">
       <header class="site-top{% if page.url == '/' %} site-top--home{% endif %}">
         <div class="site-branding">
           <div class="site-brand">
-            <a class="site-brand__link" href="{{ '/' | relative_url }}">도건우 기술 블로그</a>
+            <a class="site-brand__link" href="{{ '/' | relative_url }}">doogunwo<span class="brand-caption">기술과 배움의 기록</span></a>
           </div>
           <section class="site-contact" aria-label="연락처">
             <ul class="contact-list contact-list--sidebar">
@@ -35,15 +36,6 @@
             </ul>
           </section>
         </div>
-        {% if page.url == '/' %}
-          <div class="site-hero-art" aria-hidden="true">
-            <div class="site-hero-art__frame">
-              <div class="site-hero-art__characters">
-                <img class="site-hero-art__character" src="{{ '/2-removebg-preview copy.png' | relative_url }}" alt="" loading="eager" decoding="async">
-              </div>
-            </div>
-          </div>
-        {% endif %}
       </header>
 
       <div class="site-content">
@@ -64,10 +56,11 @@
           </ul>
         </section>
 
-        <main class="site-main">
+        <main class="site-main" id="main">
           {{ content }}
         </main>
       </div>
+      <footer class="site-footer">© {{ site.time | date: "%Y" }} {{ site.author }} · 기술과 배움의 기록</footer>
     </div>
     <script src="{{ '/assets/js/main.js?v=' | append: asset_version | relative_url }}" defer></script>
   </body>
