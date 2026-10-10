@@ -39,18 +39,16 @@
       </header>
 
       <div class="site-content">
-        <section class="sidebar-tags" aria-label="Tags">
-          <p class="sidebar-tags__title">태그 목록</p>
+        <section class="sidebar-tags" aria-label="태그별 글 목록">
+          <p class="sidebar-tags__title"><span aria-hidden="true">#</span> TOPIC INDEX</p>
           <ul class="tag-list">
             <li class="tag-list__all">
-              <a data-tag-link="all" href="{{ '/' | relative_url }}">전체보기</a>
-              <span>({{ site.posts | size }})</span>
+              <a data-tag-link="all" href="{{ '/' | relative_url }}"><span class="tag-list__label">전체 글</span><span class="tag-list__count" aria-label="{{ site.posts | size }}개 글">{{ site.posts | size }}</span></a>
             </li>
             {% assign sidebar_tags = site.tags | sort %}
             {% for tag in sidebar_tags %}
               <li>
-                <a data-tag-link="{{ tag[0] | slugify }}" href="{{ '/' | relative_url }}?tag={{ tag[0] | slugify }}">{{ tag[0] }}</a>
-                <span>({{ tag[1].size }})</span>
+                <a data-tag-link="{{ tag[0] | slugify }}" href="{{ '/' | relative_url }}?tag={{ tag[0] | slugify }}"><span class="tag-list__label">{{ tag[0] | escape }}</span><span class="tag-list__count" aria-label="{{ tag[1].size }}개 글">{{ tag[1].size }}</span></a>
               </li>
             {% endfor %}
           </ul>
