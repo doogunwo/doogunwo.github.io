@@ -3,7 +3,7 @@ title: 홈
 layout: default
 ---
 
-<header class="feed-heading"><p class="eyebrow">THE ENGINEERING JOURNAL</p><p>도건우의 기술 블로그 · {{ site.posts | size }}개의 기록</p></header>
+<header class="feed-heading"><p class="eyebrow">THE ENGINEERING JOURNAL</p><p>{{ site.title | escape }} · {{ site.posts | size }}개의 기록</p></header>
 
 <section class="feed" data-page-size="5">
   {% assign posts = site.posts %}

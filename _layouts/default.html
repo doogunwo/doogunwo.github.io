@@ -15,7 +15,7 @@
       <header class="site-top{% if page.url == '/' %} site-top--home{% endif %}">
         <div class="site-branding">
           <div class="site-brand">
-            <a class="site-brand__link" href="{{ '/' | relative_url }}">doogunwo<span class="brand-caption">기술과 배움의 기록</span></a>
+            <a class="site-brand__link" href="{{ '/' | relative_url }}">{{ site.title | escape }}</a>
           </div>
           <section class="site-contact" aria-label="연락처">
             <ul class="contact-list contact-list--sidebar">
@@ -58,7 +58,7 @@
           {{ content }}
         </main>
       </div>
-      <footer class="site-footer">© {{ site.time | date: "%Y" }} {{ site.author }} · 기술과 배움의 기록</footer>
+      <footer class="site-footer">© {{ site.time | date: "%Y" }} {{ site.author }}</footer>
     </div>
     <script src="{{ '/assets/js/main.js?v=' | append: asset_version | relative_url }}" defer></script>
   </body>
