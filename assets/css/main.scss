@@ -1,7 +1,8 @@
 ---
 ---
-:root { --text: #242823; --muted: #687068; --border: #d8ddd5; --accent: #42634d; --font-main: "Pretendard", -apple-system, sans-serif; }
+:root { --text: #242823; --muted: #687068; --border: #d8ddd5; --accent: #42634d; --font-main: Arial, sans-serif; }
 * { box-sizing: border-box; }
+button, input, textarea, select, pre, code, kbd, samp { font-family: var(--font-main); }
 html { scroll-behavior: smooth; }
 body { margin: 0; background: #fdfdfb; color: var(--text); font-family: var(--font-main); line-height: 1.7; }
 a { color: inherit; text-decoration: none; }
@@ -13,7 +14,7 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; }
 .site-shell { width: min(1120px, calc(100% - 64px)); margin: auto; }
 .site-top { padding: 28px 0; border-bottom: 1px solid var(--border); }
 .site-branding { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
-.site-brand__link { font-family: Georgia, serif; font-size: 30px; font-weight: 700; letter-spacing: -1.2px; }
+.site-brand__link { font-family: var(--font-main); font-size: 30px; font-weight: 700; letter-spacing: -1.2px; }
 .brand-caption { font-family: var(--font-main); font-size: 12px; font-weight: 400; letter-spacing: 0; color: var(--muted); margin-left: 20px; }
 .contact-list { list-style: none; margin: 0; padding: 0; display: flex; gap: 18px; }
 .contact-icon { display: flex; width: 24px; height: 24px; color: var(--muted); }
@@ -21,14 +22,14 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; }
 .site-content { display: grid; grid-template-columns: minmax(0, 1fr) 240px; gap: 64px; padding: 54px 0 80px; align-items: start; }
 .site-main { grid-column: 1; grid-row: 1; min-width: 0; }
 .sidebar-tags { grid-column: 2; grid-row: 1; position: sticky; top: 32px; border-left: 1px solid var(--border); padding-left: 28px; }
-.sidebar-tags__title { display: flex; align-items: center; gap: 9px; font: 600 11px/1.5 Consolas, "Liberation Mono", monospace; letter-spacing: 1.2px; color: var(--muted); margin: 0 0 16px; }
+.sidebar-tags__title { display: flex; align-items: center; gap: 9px; font: 600 11px/1.5 Arial, sans-serif; letter-spacing: 1.2px; color: var(--muted); margin: 0 0 16px; }
 .sidebar-tags__title > span { color: var(--accent); font-size: 16px; }
 .tag-list { list-style: none; padding: 0; margin: 0; display: grid; border-top: 1px solid var(--border); }
 .tag-list li { border-bottom: 1px solid var(--border); }
 .tag-list a { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 46px; padding: 10px 12px; border-left: 2px solid transparent; font-size: 13px; }
 .tag-list a:hover { background: #f0f2ed; }
 .tag-list__label { overflow-wrap: anywhere; }
-.tag-list__count { flex-shrink: 0; min-width: 26px; text-align: right; color: var(--muted); font: 12px/1.5 Consolas, "Liberation Mono", monospace; font-variant-numeric: tabular-nums; }
+.tag-list__count { flex-shrink: 0; min-width: 26px; text-align: right; color: var(--muted); font: 12px/1.5 Arial, sans-serif; font-variant-numeric: tabular-nums; }
 .tag-list a.is-active { color: var(--accent); font-weight: 600; background: #edf1ea; border-left-color: var(--accent); }
 .tag-list a.is-active .tag-list__count { color: var(--accent); }
 .feed-heading { padding-bottom: 34px; border-bottom: 1px solid var(--border); }
@@ -65,7 +66,7 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; }
 .prose ul, .prose ol { padding-left: 1.4em; }
 .prose li + li { margin-top: .4em; }
 .prose blockquote { margin-left: 0; border-left: 3px solid var(--accent); padding-left: 24px; color: var(--muted); }
-.prose code { font-family: Consolas, monospace; font-size: .82em; background: #f0f2ed; padding: 3px 5px; border-radius: 0; }
+.prose code { font-family: var(--font-main); font-size: .82em; background: #f0f2ed; padding: 3px 5px; border-radius: 0; }
 .prose pre { padding: 24px; background: #f3f4f0; border: 1px solid var(--border); overflow: auto; border-radius: 0; line-height: 1.7; overflow-wrap: normal; }
 .prose pre code { padding: 0; background: transparent; }
 .prose img { max-width: 100%; height: auto; display: block; margin: 24px auto; }
