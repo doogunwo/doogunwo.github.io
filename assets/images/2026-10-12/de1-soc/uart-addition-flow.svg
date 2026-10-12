@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 320" role="img" aria-labelledby="title desc">
+  <title id="title">PC에서 숫자를 보내고 DE1-SoC에서 더한 답을 받기</title>
+  <desc id="desc">PC가 문자 4와 3을 UART로 보내면 DE1-SoC의 펌웨어가 더해서 PC에 문자 7을 돌려준다.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10Z" fill="#3264a8"/>
+    </marker>
+  </defs>
+  <rect width="960" height="320" rx="18" fill="#f5f8fc"/>
+  <g font-family="sans-serif" text-anchor="middle" fill="#1b2b42">
+    <text x="480" y="45" font-size="25" font-weight="700">숫자 보내기 → 보드에서 계산하기 → 답 받기</text>
+    <rect x="35" y="87" width="230" height="152" rx="14" fill="#fff" stroke="#cad7e8" stroke-width="2"/>
+    <text x="150" y="128" font-size="24" font-weight="700">PC에서 보내기</text>
+    <text x="150" y="181" font-size="36" font-weight="700">'4' 와 '3'</text>
+    <text x="150" y="214" font-size="18">문자 두 개 전송</text>
+    <path d="M280 167H347" fill="none" stroke="#3264a8" stroke-width="3" marker-end="url(#arrow)"/>
+    <text x="314" y="145" font-size="18" fill="#3264a8">UART</text>
+    <rect x="365" y="87" width="230" height="152" rx="14" fill="#e6f2ed" stroke="#9cc5b2" stroke-width="2"/>
+    <text x="480" y="128" font-size="24" font-weight="700">DE1-SoC</text>
+    <text x="480" y="181" font-size="36" font-weight="700">4 + 3 = 7</text>
+    <text x="480" y="214" font-size="18">펌웨어가 계산</text>
+    <path d="M610 167H677" fill="none" stroke="#3264a8" stroke-width="3" marker-end="url(#arrow)"/>
+    <text x="644" y="145" font-size="18" fill="#3264a8">UART</text>
+    <rect x="695" y="87" width="230" height="152" rx="14" fill="#fff" stroke="#cad7e8" stroke-width="2"/>
+    <text x="810" y="128" font-size="24" font-weight="700">PC에서 확인</text>
+    <text x="810" y="181" font-size="36" font-weight="700">7</text>
+    <text x="810" y="214" font-size="18">보드가 답을 전송</text>
+    <text x="480" y="285" font-size="19" fill="#52657d">계산하는 C 프로그램은 보드의 ARM CPU에서 실행됩니다.</text>
+  </g>
+</svg>
