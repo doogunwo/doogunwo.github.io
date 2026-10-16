@@ -1,6 +1,20 @@
 ---
 layout: default
 ---
+{% if page.math %}
+<style>
+  .post-content .math-display {
+    max-width: 100%;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+  }
+  .post-content .math-display mjx-container[display="true"] {
+    width: max-content;
+    min-width: 100%;
+  }
+</style>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js"></script>
+{% endif %}
 <article class="post post--editor">
   <div class="post-layout">
     <div class="editor-frame">
