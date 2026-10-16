@@ -10,6 +10,7 @@ tags:
   - 임베디드
 description: "DE1-SoC의 HPS ARM에서 베어메탈 부트로더를 만들고, 링커와 시작 코드, JTAG 업로드, 하드웨어 초기화를 거쳐 UART 출력을 확인한 학습 기록."
 thumbnail: /assets/images/2026-10-11/de1-soc/uart-bootloader-ready.png
+toc_depth: 2
 ---
 
 펌웨어가 어떻게 실행되는지 기초부터 이해하고 싶어서 DE1-SoC로 실습을 시작했다. 목표는 직접 만든 부트로더를 보드에 올리고, 그 부트로더가 나중에 펌웨어를 받아 실행하도록 만드는 것이다. 최종적으로는 PC에서 간단한 요청을 보내고, 펌웨어가 처리한 결과를 돌려받는 구조를 생각하고 있다.
@@ -28,7 +29,9 @@ Bootloader ready
 
 <!--more-->
 
-## DE1-SoC에서 사용할 부분
+## 보드와 통신
+
+### DE1-SoC에서 사용할 부분
 
 DE1-SoC는 Terasic의 개발 보드이며, Cyclone V SoC를 사용한다. 하나의 칩에 FPGA 영역과 ARM 기반 HPS가 함께 들어 있다. HPS는 Hard Processor System의 약자로, ARM CPU와 메모리 인터페이스, UART 같은 주변장치가 이미 하드웨어로 구현된 부분이다.
 
@@ -46,7 +49,7 @@ DE1-SoC는 Terasic의 개발 보드이며, Cyclone V SoC를 사용한다. 하나
 
 이번에는 FPGA 안에 Nios II 같은 CPU를 구성하지 않았다. 이미 칩에 들어 있는 HPS의 Cortex-A9에서 ARM 코드를 실행했다. 따라서 주된 작업은 C와 시작 코드 작성, 메모리 배치, HPS 주변장치 설정이었다.
 
-## 펌웨어와 베어메탈 그리고 부트로더
+### 펌웨어와 베어메탈 그리고 부트로더
 
 펌웨어는 장치의 동작을 제어하는 소프트웨어다. UART로 데이터를 받거나, 타이머를 설정하거나, GPIO의 출력을 바꾸는 코드가 여기에 해당한다. 배포된 장치에서는 플래시 같은 비휘발성 메모리에 저장되는 경우가 많지만, 개발 중에는 RAM에 올려 실행할 수도 있다.
 
@@ -72,7 +75,7 @@ PC
 
 현재 만든 것은 이 구조의 첫 단계다. 부트로더의 시작 코드와 UART 초기화는 동작하지만, 다음 펌웨어를 수신하는 로더와 요청 처리 기능은 아직 구현하지 않았다.
 
-## USB 케이블 두 개의 역할
+### USB 케이블 두 개의 역할
 
 처음에는 `lsusb`에 Altera 장치가 보이니 이 연결로 문자도 주고받을 수 있을 것이라고 생각했다. 그런데 보드의 USB-Blaster II와 USB-to-UART는 서로 다른 인터페이스였다.
 
@@ -97,7 +100,7 @@ ID 0403:6001 Future Technology Devices International, Ltd FT232 Serial (UART) IC
 
 JTAG 도구가 USB-Blaster II를 초기화한 뒤에는 Altera 장치가 `09fb:6010 Altera DE-SoC`로 보였다. 이번 환경에서 관찰한 초기화 전후의 식별자 변화다.
 
-## JTAG와 UART를 구분하기
+### JTAG와 UART를 구분하기
 
 JTAG는 칩의 테스트와 디버깅에 사용하는 인터페이스다. 이 실습에서는 CPU를 멈추고, 메모리에 코드를 쓰고, 레지스터와 실행 위치를 확인하는 통로로 사용했다. C 코드를 실행 중인 CPU를 제어할 수 있으므로 프로그램이 아직 UART를 준비하지 못한 단계에서도 디버깅할 수 있었다.
 
@@ -120,7 +123,9 @@ UART는 문자나 바이트를 순서대로 송수신하는 직렬 통신 장치
 
 따라서 `/dev/ttyUSB0`가 생겼다고 부트로더가 업로드된 것은 아니다. 이 포트는 문자가 오가는 통로다. 이번 실습의 부트로더 코드는 JTAG로 올렸고, 실행 결과는 UART로 확인했다.
 
-## CPU 레지스터와 주변장치 레지스터
+## 메모리와 레지스터
+
+### CPU 레지스터와 주변장치 레지스터
 
 실습 중 가장 먼저 헷갈린 것은 레지스터의 종류였다. CPU의 `SP`를 찾다가 메모리 주소표의 `SPIS1`, `SPIM0`를 보게 됐는데, 이름이 비슷해도 다른 항목이었다.
 
@@ -139,7 +144,7 @@ CPU 내부에서 사용하는 기본 레지스터는 다음과 같다.
 
 반면 메모리 맵의 `SPIS1`은 SPI Slave 1, `SPIM0`는 SPI Master 0 통신 장치다. 이 이름은 스택 포인터 SP와 관계가 없다. CPU 레지스터 설명과 주변장치 주소표를 따로 읽어야 했다. Cortex-A9의 시스템 제어 레지스터는 [Arm 기술 매뉴얼](https://documentation-service.arm.com/static/5f0370fccafe527e86f5bfb2?token=)에서 확인할 수 있다.
 
-## MMIO로 하드웨어에 접근하기
+### MMIO로 하드웨어에 접근하기
 
 주변장치 레지스터는 정해진 메모리 주소로 접근한다. 이를 Memory-Mapped I/O, 줄여서 MMIO라고 한다. 일반 RAM에 값을 쓰는 형태의 명령을 사용하지만, 해당 주소에서는 UART나 리셋 컨트롤러 같은 하드웨어가 그 접근을 처리한다.
 
@@ -174,7 +179,7 @@ uint32_t status = reg_read(UART_LSR); // 해당 주소에서 상태 읽기
 
 단순히 `#define UART0_BASE 0xFFC02000u`라고 적는 것은 주소에 이름을 붙이는 작업이다. 실제 하드웨어 접근은 `reg_read()`나 `reg_write()`를 호출할 때 발생한다.
 
-## 메모리 맵과 OCRAM의 위치
+### 메모리 맵과 OCRAM의 위치
 
 주소를 임의로 정할 수는 없다. Cyclone V HPS 매뉴얼의 메모리 맵에서 해당 장치의 시작 주소와 크기를 찾아야 한다. 개별 레지스터는 보통 **장치 시작 주소에 레지스터 오프셋을 더한 주소**로 접근한다. [공식 HPS 주변장치 주소표](https://docs.altera.com/r/docs/683126/21.2/cyclone-v-hard-processor-system-technical-reference-manual/hps-peripheral-region-address-map?contentId=MOeaB5f2LZdV4Jgkc~UQqQ)
 
@@ -196,7 +201,9 @@ Boot ROM도 우리가 만든 부트로더를 저장하는 공간은 아니다. �
 
 읽었던 2014년판 매뉴얼에서는 OCRAM과 Boot ROM의 정확한 범위가 PDF 745쪽, 본문 12-4에 나와 있었다. MPU 레지스터 상세 범위는 `0xFFFEC000`–`0xFFFEEFFF`, L2 캐시 제어 영역은 `0xFFFEF000`–`0xFFFEFFFF`여서 OCRAM과 겹치지 않았다. MPU 요약표의 8 KB와 상세표의 12 KB는 상세표가 예약 영역 4 KB까지 포함하는 차이도 있었다. 주소표는 시작 주소뿐 아니라 끝 주소와 예약 영역까지 함께 확인하는 편이 정확했다.
 
-## 소스 파일의 역할
+## 프로젝트 구조
+
+### 소스 파일의 역할
 
 실습 코드는 다음처럼 나누었다.
 
@@ -224,7 +231,7 @@ void board_delay(void);
 
 필수 I/O 설정까지 삭제한 것은 아니다. 보드가 전원 직후 실제로 문자를 내보내려면 필요한 절차가 있어서, 그 부분은 별도 파일에 유지했다.
 
-## 링커가 코드와 데이터를 배치하는 방법
+### 링커가 코드와 데이터를 배치하는 방법
 
 C 소스를 컴파일하면 실행 코드와 데이터가 각각 섹션으로 나뉜다. 링커는 여러 파일의 섹션을 모아 최종 실행 파일에 배치한다. `linker.ld`는 이때 사용할 메모리와 배치 규칙을 알려준다. [GNU ld의 SECTIONS 설명](https://sourceware.org/binutils/docs/ld/SECTIONS.html)
 
@@ -328,7 +335,7 @@ gcc -E -P -x c linker.ld.S -o linker.ld
 
 이 과정이 C 함수에서 링커 스크립트로의 변환은 아니다. 매크로는 C 전처리기가 처리하고, `MEMORY`와 `SECTIONS`는 여전히 GNU ld 문법이다. 원본은 `linker.ld.S`이므로 메모리 설정을 바꿀 때도 원본을 수정하고 다시 생성한다.
 
-## main 이전에 실행되는 startup.S
+### main 이전에 실행되는 startup.S
 
 운영체제 위에서 C 프로그램을 만들 때는 보통 `main()`부터 생각한다. 이번에는 그 전에 사용할 스택과 전역변수 상태를 직접 준비해야 했다. `_start`가 그 일을 수행하는 시작점이다.
 
@@ -388,7 +395,9 @@ BSS 초기화에서는 시작 주소를 R0, 끝 주소를 R1에 넣고, R2에 0�
 
 `.data`의 초기값은 ELF를 통해 JTAG가 RAM에 직접 올린다. 현재는 실행 주소와 로드 주소가 같은 RAM 배치이므로, ROM의 초기값을 RAM으로 복사하는 코드는 넣지 않았다. 플래시에서 부팅하도록 바꾸면 초기값의 저장 위치와 실행 위치를 다시 설계해야 한다.
 
-## 하드웨어 초기화의 범위
+## 하드웨어 초기화
+
+### 초기화하는 장치와 설정
 
 하드웨어 초기화라고 해서 보드의 모든 기능을 한꺼번에 설정한 것은 아니다. 내부 RAM에서 C 코드를 실행하고 UART로 출력하는 데 필요한 경로부터 준비했다.
 
@@ -405,7 +414,7 @@ BSS 초기화에서는 시작 주소를 R0, 끝 주소를 R1에 넣고, R2에 0�
 
 외부 DDR 초기화, PLL의 고속 동작 설정, CPU1 실행, MMU 페이지 테이블과 캐시 설정은 이번 단계에 포함하지 않았다. 이 프로그램은 **전원 직후의 알려진 상태에서 CPU0를 JTAG로 제어하는 실습**을 전제로 한다. 이미 리눅스 등이 하드웨어를 바꾼 상태에 같은 코드를 그대로 적용하는 용도는 아니다.
 
-### CPU 상태와 클럭 확인
+#### CPU 상태와 클럭 확인
 
 `board_init()`은 IRQ/FIQ를 차단하고 CP15의 SCTLR을 읽는다.
 
@@ -424,7 +433,7 @@ Clock Manager의 제어 레지스터는 `0xFFD04000`이고, bit 0으로 Safe Mod
 
 DE1-SoC의 OSC1 입력은 25 MHz다. 이 값은 [U-Boot의 DE1-SoC 클럭 설정](https://github.com/u-boot/u-boot/blob/master/board/terasic/de1-soc/qts/pll_config.h)에서도 확인할 수 있다. 그래서 이번 코드에서는 UART에 공급되는 `l4_sp_clk`를 25 MHz로 잡았다. UART가 항상 25 MHz라는 뜻은 아니며, PLL과 분주기 설정을 바꾸면 속도 계산도 바뀐다.
 
-### 리셋과 L4 watchdog
+#### 리셋과 L4 watchdog
 
 주변장치 리셋 레지스터 `PERMODRST`의 주소는 `0xFFD05014`다. UART0에 해당하는 bit 16은 1이면 리셋 유지, 0이면 리셋 해제다. L4 watchdog 0과 1에 해당하는 bit 6과 bit 7도 1로 두어 이번 실습 중에는 정지 상태를 유지했다.
 
@@ -440,7 +449,7 @@ board_delay();
 
 UART를 리셋 상태로 둔 채 핀을 준비하고, 준비가 끝나면 UART 리셋만 해제하는 순서다. `|=`와 `&= ~`를 써서 지정한 비트만 바꾸고 다른 주변장치의 리셋 상태는 유지했다. 여기서 정지한 watchdog은 L4의 두 장치이며, 모든 종류의 watchdog을 다루는 초기화는 아니다.
 
-### UART 핀의 전기적 설정과 Scan Manager
+#### UART 핀의 전기적 설정과 Scan Manager
 
 UART 레지스터에 값을 쓰는 것만으로는 보드 밖으로 신호가 나가지 않을 수 있다. 전원 직후 HPS I/O에는 전기적 설정과 핀 기능 선택이 필요하다. UART가 있는 I/O bank 7A는 scan chain 2를 통해 설정한다.
 
@@ -450,7 +459,7 @@ UART 레지스터에 값을 쓰는 것만으로는 보드 밖으로 신호가 �
 
 여기서 사용하는 Scan Manager는 **CPU가 HPS I/O 설정을 적용하는 하드웨어**다. PC에서 USB-Blaster로 ARM을 디버깅하는 외부 JTAG 연결과는 역할이 다르다. 관련 구조는 HPS 매뉴얼의 Scan Manager 장, 읽었던 PDF 405–412쪽에서 확인했다.
 
-### Freeze와 핀 기능 선택
+#### Freeze와 핀 기능 선택
 
 설정 중 핀이 중간 상태의 신호를 출력하지 않도록 먼저 해당 bank를 freeze한다. 설정을 적용한 뒤 정해진 순서로 thaw하여 핀이 동작하도록 한다.
 
@@ -470,7 +479,7 @@ REG32(UART_TX_MUX) = 1u; // GPIO50 위치의 핀 → UART0 TX
 
 `board_delay()`는 `dsb sy`로 앞선 메모리 접근의 완료를 기다리고, `nop` 반복으로 설정 사이에 간격을 둔다. 이것은 현재 25 MHz의 단순한 초기 상태에서 사용하는 대기 코드다. 정확한 시간 측정이나 일반적인 타이머 기능을 구현한 것은 아니다.
 
-## UART의 문자 형식과 통신 속도
+### UART의 문자 형식과 통신 속도
 
 보드 준비가 끝나면 `uart_init()`에서 UART 레지스터를 설정한다. 이번에 사용한 주소는 다음과 같다.
 
@@ -516,7 +525,7 @@ baud = UART 입력 클럭 / (16 × 분주값)
 
 따라서 코드에서 27을 쓴 것은 임의의 설정이 아니다. 현재 클럭에서 57600 baud에 가까운 정수 분주값이다. PC 터미널도 57600 baud로 맞췄고 실제 문자열 출력을 확인했다. 클럭이 바뀌면 이 숫자를 그대로 사용할 수 없다.
 
-## 문자 한 개를 보내는 코드
+### 문자 한 개를 보내는 코드
 
 UART 송신에서는 LSR의 bit 5를 확인한다. 이 비트가 1이면 송신 holding register에 다음 문자를 쓸 수 있다.
 
@@ -566,7 +575,9 @@ int main(void)
 
 먼저 보드 초기화 조건을 확인하고 필요한 핀을 준비한다. 성공하면 UART 속도를 설정하고 문자열을 보낸다. `\r\n`은 줄바꿈 후 다음 줄의 처음으로 이동하도록 넣은 문자다. 출력 후에는 다음 프로그램이 아직 없으므로 대기한다.
 
-## ARM용 빌드와 ELF
+## ELF 빌드
+
+### ARM용 빌드와 ELF
 
 우분투 PC에서 실행하는 일반 프로그램과 보드의 ARM에서 실행할 프로그램은 대상 CPU가 다르다. 그래서 실행 코드는 `arm-none-eabi-gcc`로 빌드했다.
 
@@ -635,7 +646,7 @@ __stack_top    0xfffffff8
 
 현재 RAM에 올릴 코드와 읽기 전용 데이터의 합은 `0x4e4 + 0x8c = 1392 bytes`였다. ELF 파일 전체의 크기는 이보다 크다. 디버깅 정보와 심볼처럼 보드의 실행 메모리에 올리지 않는 내용도 파일에 포함되기 때문이다. 소스를 수정하면 코드 크기와 `main` 등의 주소도 달라질 수 있다.
 
-## execute.sh로 명령 모으기
+### execute.sh로 명령 모으기
 
 단계가 추가될 때마다 명령을 따로 기억하지 않도록 `execute.sh`에 모았다. 현재 사용 방식은 세 가지다.
 
@@ -649,7 +660,9 @@ sudo ./execute.sh uart # UART 출력 보기
 
 이 시점에는 GDB의 업로드와 실행 명령을 스크립트에 자동화하지 않았다. CPU를 언제 멈추고 언제 실행하는지 이해하기 위해 GDB에서는 수동으로 진행했다.
 
-## JTAG 장치 확인과 OpenOCD 설정
+## JTAG 업로드
+
+### JTAG 장치 확인과 OpenOCD 설정
 
 `jtagconfig`로 보드의 실제 체인을 확인했다.
 
@@ -708,7 +721,7 @@ Info : Listening on port 3333 for gdb connections
 
 이 상태는 GDB가 연결할 준비가 됐다는 뜻이다. 아직 부트로더가 실행됐다는 뜻은 아니다. OpenOCD 터미널은 켜둔 채 다른 터미널에서 GDB를 실행했다.
 
-## GDB로 업로드하고 main까지 실행하기
+### GDB로 업로드하고 main까지 실행하기
 
 다른 터미널에서 ELF를 지정해 GDB를 열었다.
 
@@ -792,7 +805,9 @@ CPSR의 낮은 값에서 실행 모드는 `0x13`, 즉 Supervisor였다. T bit는
 
 이 중단점에 도착한 것으로 **시작 코드가 실행되어 C 함수에 진입했다는 것**을 확인했다. 아직 조건문의 `board_init()`은 실행 전이므로 UART 초기화 성공까지 확인한 상태는 아니었다.
 
-## DAP WAIT와 data abort 로그를 어떻게 읽었나
+## 실행 확인
+
+### DAP WAIT와 data abort 로그를 어떻게 읽었나
 
 CPSR를 설정하는 시점에는 다음 로그가 반복해서 나왔다.
 
@@ -814,7 +829,7 @@ Error: data abort at 0xfffefffc, dfsr = 0x00001008
 
 스크린샷에는 `target extended-remote :3333`을 선호한다는 경고도 있다. 이 실습에서 실제로 사용한 접속 명령은 `target remote localhost:3333`이었다. 접속 방식 권고와 data abort의 원인은 구분해서 보며, 접속 명령만 바꾸면 오류가 해결된다고 단정하지 않았다.
 
-## UART 터미널에서 출력 확인하기
+### UART 터미널에서 출력 확인하기
 
 문자열은 한 번만 출력하므로, GDB에서 하드웨어 초기화를 진행하기 전에 UART 터미널을 열었다. 터미널 구성은 다음과 같았다.
 
@@ -861,7 +876,7 @@ Bootloader ready
 
 내 프로그램이 JTAG로 올라가 시작 코드를 실행했고, `main()`에서 보드와 UART 설정을 거쳐 PC로 문자열을 보냈다는 것이 이번 실습의 결과다.
 
-## 이번 실습에서 확인한 것과 다음 단계
+### 이번 실습에서 확인한 것과 다음 단계
 
 이번에 실제로 확인한 경로는 다음과 같다.
 
@@ -890,7 +905,7 @@ PC가 펌웨어 전송 → 부트로더가 저장 → 수신 검증 → 실행
 
 이번 글과 같은 시점의 [실습 소스 다운로드](/assets/downloads/de1-soc-bootloader-practice.zip)에는 `main.c`, `board.c`, IOCSR 설정, 시작 코드, 링커 원본과 생성 결과, JTAG 설정, 실행 스크립트를 넣었다. `execute.sh`의 기본 Quartus 경로는 내 우분투 환경에 맞춰져 있으며, 다른 설치 위치에서는 `QUARTUS_ROOTDIR`을 지정해 사용한다.
 
-## 참고한 문서
+### 참고한 문서
 
 - [Terasic DE1-SoC 공식 사양](https://www.terasic.com.tw/cgi-bin/page/archive.pl?CategoryNo=165&Language=Taiwan&No=836&PartNo=2)
 - [Cyclone V HPS Technical Reference Manual](https://docs.altera.com/r/docs/683126/current)

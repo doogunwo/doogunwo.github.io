@@ -31,7 +31,7 @@ layout: default
       </div>
     </div>
 
-    <aside class="post-outline" data-post-outline hidden>
+    <aside class="post-outline" data-post-outline data-outline-depth="{{ page.toc_depth | default: 3 }}" hidden>
       <p class="post-outline__title">목차</p>
       <nav class="post-outline__nav" data-post-outline-nav aria-label="문서 목차"></nav>
     </aside>

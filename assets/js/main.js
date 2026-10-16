@@ -143,7 +143,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const outlineNav = document.querySelector("[data-post-outline-nav]");
 
   if (postContent && outline && outlineNav) {
-    const headings = Array.from(postContent.querySelectorAll("h2, h3"));
+    const headingSelector = outline.dataset.outlineDepth === "2" ? "h2" : "h2, h3";
+    const headings = Array.from(postContent.querySelectorAll(headingSelector));
     const slugCounts = new Map();
 
     const slugifyHeading = (text) => {
