@@ -33,9 +33,8 @@
         <div class="site-branding">
           <div class="site-brand">
             <a class="site-brand__link" href="{{ '/' | relative_url }}">
-              <img class="site-brand__mark" src="{{ '/assets/images/supersilo-mark.svg' | relative_url }}" width="68" height="68" alt="" aria-hidden="true">
               <span class="site-brand__text">
-                <span class="site-brand__name">supersilo</span>
+                <span class="site-brand__name">{{ site.title | escape }}</span>
                 <span class="site-brand__tagline">Systems · Storage · Research</span>
               </span>
             </a>
