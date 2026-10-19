@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#f2efe6"/>
+  <g fill="none" stroke="#282d29" stroke-width="4">
+    <circle cx="550" cy="170" r="66"/>
+    <circle cx="650" cy="170" r="66"/>
+    <circle cx="550" cy="264" r="66"/>
+    <circle cx="650" cy="264" r="66"/>
+  </g>
+  <text x="600" y="424" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="86" letter-spacing="-4" fill="#282d29">supersilo</text>
+  <text x="600" y="484" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="20" letter-spacing="4" fill="#667069">SYSTEMS · STORAGE · RESEARCH</text>
+  <path d="M140 531H1060" stroke="#d8d3c8" stroke-width="2"/>
+  <text x="600" y="573" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="20" fill="#667069">www.supersilo.blog</text>
+</svg>

@@ -14,7 +14,8 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; }
 .site-shell { width: min(1120px, calc(100% - 64px)); margin: auto; }
 .site-top { padding: 28px 0; border-bottom: 1px solid var(--border); }
 .site-branding { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
-.site-brand__link { font-family: var(--font-main); font-size: 30px; font-weight: 700; letter-spacing: -1.2px; }
+.site-brand__link { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-main); font-size: 30px; font-weight: 700; letter-spacing: -1.2px; }
+.site-brand__mark { display: block; width: 1.2em; height: 1.2em; flex-shrink: 0; }
 .brand-caption { font-family: var(--font-main); font-size: 12px; font-weight: 400; letter-spacing: 0; color: var(--muted); margin-left: 20px; }
 .contact-list { list-style: none; margin: 0; padding: 0; display: flex; gap: 18px; }
 .contact-icon { display: flex; width: 24px; height: 24px; color: var(--muted); }
@@ -95,6 +96,7 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; }
 }
 @media (max-width: 480px) {
   .site-top { padding: 22px 0; }
+  .site-branding { flex-wrap: wrap; gap: 12px; }
   .site-brand__link { font-size: 26px; }
   .post-card { grid-template-columns: minmax(0,1fr) 84px; gap: 16px; padding: 24px 0; }
   .post-card__thumb { width: 84px; height: 84px; }

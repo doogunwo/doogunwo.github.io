@@ -6,6 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% if page.title %}{{ page.title }} · {% endif %}{{ site.title }}</title>
     <meta name="description" content="{{ page.description | default: site.description | escape }}">
+    <link rel="canonical" href="{{ page.url | absolute_url }}">
+    <meta property="og:site_name" content="{{ site.title | escape }}">
+    <meta property="og:title" content="{{ page.title | default: site.title | escape }}">
+    <meta property="og:description" content="{{ page.description | default: site.description | escape }}">
+    <meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}">
+    <meta property="og:url" content="{{ page.url | absolute_url }}">
+    <meta property="og:image" content="{{ site.social_image | absolute_url }}">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="supersilo — Systems · Storage · Research">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ page.title | default: site.title | escape }}">
+    <meta name="twitter:description" content="{{ page.description | default: site.description | escape }}">
+    <meta name="twitter:image" content="{{ site.social_image | absolute_url }}">
+    <meta name="twitter:image:alt" content="supersilo — Systems · Storage · Research">
+    <link rel="icon" type="image/svg+xml" href="{{ '/assets/images/supersilo-mark.svg' | relative_url }}">
     <link rel="stylesheet" href="{{ '/assets/css/main.css?v=' | append: asset_version | relative_url }}">
   </head>
   <body class="{% if page.layout == 'post' %}reading-page{% endif %}" data-thumbnail-fallback="{{ '/assets/images/default-thumbnail.svg' | relative_url }}">
@@ -14,7 +31,7 @@
       <header class="site-top{% if page.url == '/' %} site-top--home{% endif %}">
         <div class="site-branding">
           <div class="site-brand">
-            <a class="site-brand__link" href="{{ '/' | relative_url }}">{{ site.title | escape }}</a>
+            <a class="site-brand__link" href="{{ '/' | relative_url }}"><img class="site-brand__mark" src="{{ '/assets/images/supersilo-mark.svg' | relative_url }}" width="36" height="36" alt="" aria-hidden="true"><span>{{ site.title | escape }}</span></a>
           </div>
           <section class="site-contact" aria-label="연락처">
             <ul class="contact-list contact-list--sidebar">
