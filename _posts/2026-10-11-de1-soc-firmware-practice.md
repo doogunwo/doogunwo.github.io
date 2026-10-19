@@ -5,9 +5,7 @@ categories:
   - writing
   - study
 tags:
-  - 펌웨어
-  - ARM
-  - 임베디드
+  - 개발
 description: "DE1-SoC의 HPS ARM에서 베어메탈 부트로더를 만들고, 링커와 시작 코드, JTAG 업로드, 하드웨어 초기화를 거쳐 UART 출력을 확인한 학습 기록."
 thumbnail: /assets/images/2026-10-11/de1-soc/uart-bootloader-ready.png
 toc_depth: 2

@@ -5,9 +5,7 @@ categories:
   - writing
   - study
 tags:
-  - 펌웨어
-  - ARM
-  - 임베디드
+  - 개발
 description: "펌웨어가 무엇인지부터 쉽게 알아보고, DE1-SoC 보드에 C 프로그램을 올려 PC에서 보낸 숫자 두 개를 더하고 결과를 받는 과정."
 thumbnail: /assets/images/2026-10-12/de1-soc/firmware-upload-success.png
 toc_depth: 2

@@ -5,7 +5,7 @@ categories:
   - writing
   - study
 tags:
-  - 운영체제
+  - 개발
 thumbnail: /assets/thumbnail/vs.png
 ---
 

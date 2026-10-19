@@ -5,7 +5,7 @@ categories:
   - writing
   - edge
 tags:
-  - 운영체제
+  - 개발
 thumbnail: /assets/images/nvmf.png
 ---
 

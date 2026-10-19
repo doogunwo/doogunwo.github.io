@@ -8,10 +8,7 @@ categories:
   - writing
   - systems
 tags:
-  - 개발회고
-  - 자료구조
-  - C
-  - 성능측정
+  - 개발
 thumbnail: /assets/images/shashtable/architecture.png
 description: "회사에서 GLib 의존성과 유지보수 부담을 줄이려고 직접 개발한 SHashTable. 최종 채택에는 이르지 못했지만, 64바이트 키 특화와 API 설계, Robin Hood 탐색을 구현하고 측정한 과정을 기록한다."
 ---

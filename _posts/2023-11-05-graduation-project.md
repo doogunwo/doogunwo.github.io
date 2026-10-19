@@ -5,7 +5,7 @@ categories:
   - writing
   - project
 tags:
-  - 졸업작품
+  - 프로젝트
 thumbnail: https://velog.velcdn.com/images/doogunwo/post/d516e916-1555-45b5-a474-18de4a1edf14/image.gif
 ---
 

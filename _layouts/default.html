@@ -31,8 +31,40 @@
       <header class="site-top{% if page.url == '/' %} site-top--home{% endif %}">
         <div class="site-branding">
           <div class="site-brand">
-            <a class="site-brand__link" href="{{ '/' | relative_url }}"><img class="site-brand__mark" src="{{ '/assets/images/supersilo-mark.svg' | relative_url }}" width="36" height="36" alt="" aria-hidden="true"><span>{{ site.title | escape }}</span></a>
+            <a class="site-brand__link" href="{{ '/' | relative_url }}">
+              <img class="site-brand__mark" src="{{ '/assets/images/supersilo-mark.svg' | relative_url }}" width="68" height="68" alt="" aria-hidden="true">
+              <span class="site-brand__text">
+                <span class="site-brand__name">supersilo</span>
+                <span class="site-brand__tagline">Systems · Storage · Research</span>
+              </span>
+            </a>
           </div>
+
+        </div>
+      </header>
+
+      <div class="site-content">
+        <section class="sidebar-tags" aria-label="태그별 글 목록">
+          <p class="sidebar-tags__title"><span aria-hidden="true">#</span> TOPIC INDEX</p>
+          <ul class="tag-list">
+            <li class="tag-list__all">
+              <a data-tag-link="all" href="{{ '/' | relative_url }}"><span class="tag-list__label">전체 글</span><span class="tag-list__count" aria-label="{{ site.posts | size }}개 글">{{ site.posts | size }}</span></a>
+            </li>
+            {% assign sidebar_tags = "논문리뷰,개발,프로젝트" | split: "," %}
+            {% for tag in sidebar_tags %}
+              <li>
+                <a data-tag-link="{{ tag | slugify }}" href="{{ '/' | relative_url }}?tag={{ tag | slugify }}"><span class="tag-list__label">{{ tag | escape }}</span><span class="tag-list__count" aria-label="{{ site.tags[tag].size }}개 글">{{ site.tags[tag].size }}</span></a>
+              </li>
+            {% endfor %}
+          </ul>
+        </section>
+
+        <main class="site-main" id="main">
+          {{ content }}
+        </main>
+      </div>
+      <footer class="site-footer">
+        <span>© {{ site.time | date: "%Y" }} {{ site.author }}</span>
           <section class="site-contact" aria-label="연락처">
             <ul class="contact-list contact-list--sidebar">
               <li class="contact-item">
@@ -51,30 +83,7 @@
               </li>
             </ul>
           </section>
-        </div>
-      </header>
-
-      <div class="site-content">
-        <section class="sidebar-tags" aria-label="태그별 글 목록">
-          <p class="sidebar-tags__title"><span aria-hidden="true">#</span> TOPIC INDEX</p>
-          <ul class="tag-list">
-            <li class="tag-list__all">
-              <a data-tag-link="all" href="{{ '/' | relative_url }}"><span class="tag-list__label">전체 글</span><span class="tag-list__count" aria-label="{{ site.posts | size }}개 글">{{ site.posts | size }}</span></a>
-            </li>
-            {% assign sidebar_tags = site.tags | sort %}
-            {% for tag in sidebar_tags %}
-              <li>
-                <a data-tag-link="{{ tag[0] | slugify }}" href="{{ '/' | relative_url }}?tag={{ tag[0] | slugify }}"><span class="tag-list__label">{{ tag[0] | escape }}</span><span class="tag-list__count" aria-label="{{ tag[1].size }}개 글">{{ tag[1].size }}</span></a>
-              </li>
-            {% endfor %}
-          </ul>
-        </section>
-
-        <main class="site-main" id="main">
-          {{ content }}
-        </main>
-      </div>
-      <footer class="site-footer">© {{ site.time | date: "%Y" }} {{ site.author }}</footer>
+      </footer>
     </div>
     <script src="{{ '/assets/js/main.js?v=' | append: asset_version | relative_url }}" defer></script>
   </body>
